@@ -1,0 +1,9 @@
+.head {
+    background: aqua;
+    height: 40px;
+}
+
+.head img {
+    width: 30px;
+    margin: 5px 0 0 5px;
+}
