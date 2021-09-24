@@ -2,11 +2,16 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    background: red;
+    background: #3eeac9;
 }
 
 .ul a {
     display: block;
     text-decoration: none;
+    color: #0505f3;
 
+}
+
+.ul a:hover {
+    color: #f80707;
 }
