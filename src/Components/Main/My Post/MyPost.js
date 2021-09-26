@@ -6,8 +6,8 @@ import Post from "./Post/Post";
 export default function MyPost() {
     return (
         <>
-            <Post />
-            <Post />
+            <Post message='Hi'/>
+            <Post message='Hello'/>
             <Post />
             <Post />
             <Post />
