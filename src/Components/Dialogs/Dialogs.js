@@ -1,8 +1,9 @@
 import React from "react";
-import style from './Dialogs.module.css'
 
-export default function Dialogs(props) {
+export default function Dialogs() {
     return (
-        <div>Dialogs</div>
+        <div>
+            Dialogs
+        </div>
     )
 }

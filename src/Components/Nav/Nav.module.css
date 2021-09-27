@@ -2,16 +2,19 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    background: #3eeac9;
+    background: #0505f3;
 }
 
-.ul a {
+.ul a{
     display: block;
     text-decoration: none;
-    color: #0505f3;
-
+    color: #ffffff;
 }
 
 .ul a:hover {
     color: #f80707;
+}
+
+.ul a.active {
+    color: #3eeac9;
 }
