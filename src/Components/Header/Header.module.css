@@ -1,6 +1,7 @@
 .head {
     background: #ecfd40;
     height: 40px;
+    grid-area: head;
 }
 
 .head img {

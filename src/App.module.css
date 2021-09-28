@@ -4,21 +4,15 @@
     display: grid;
     grid-template-areas:
             "head head"
-            "nav main";
+            "nav content";
     grid-template-rows: 40px 1fr;
     grid-template-columns: 2fr 10fr ;
 
 }
 
-
-.header {
-   grid-area: head;
+.appContent {
+    grid-area: content;
+    background: #e8e8ef;
 }
 
-.nav {
-    grid-area: nav;
-}
 
-.main {
-    grid-area: main;
-}

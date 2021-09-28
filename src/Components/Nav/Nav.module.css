@@ -1,8 +1,9 @@
 .ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
     background: #0505f3;
+    padding: 15px;
+    grid-area: nav;
 }
 
 .ul a{

@@ -15,13 +15,9 @@ export default function App() {
     return (
         <BrowserRouter>
             <div className={style.body}>
-                <div className={style.header}>
                     <Header />
-                </div>
-                <div className={style.nav}>
                     <Nav />
-                </div>
-                <div className={style.main}>
+                <div className={style.appContent}>
                     <Route path='/profile' component={Main} />
                     <Route path='/dialogs' component={Dialogs} />
                     <Route path='/news' component={News} />
