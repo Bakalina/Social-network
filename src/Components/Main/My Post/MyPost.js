@@ -5,7 +5,7 @@ import Post from "./Post/Post";
 
 export default function MyPost() {
     return (
-        <>
+        <div className={style.myPost}>
             <Post message='Hi'/>
             <Post message='Hello'/>
             <Post />
@@ -13,7 +13,7 @@ export default function MyPost() {
             <Post />
             <Post />
             <Post />
-        </>
+        </div>
 
     )
 }
