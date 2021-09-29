@@ -1,20 +1,37 @@
 import React from "react";
 import style from './Dialogs.module.css';
+import {NavLink} from "react-router-dom";
+
+
+function DialogItem(props) {
+    return (
+        <div className={style.dialog + ' ' + style.active}>
+            <NavLink to={'/dialogs/' + props.id}>{props.name}</NavLink>
+        </div>
+    )
+}
+
+function MessageItems(props){
+    return (
+        <div className={style.message}>{props.message}</div>
+    )
+}
+
 
 export default function Dialogs() {
     return (
         <div className={style.dialogs}>
             <div className={style.dialogsItems}>
-                <div className={style.dialog + ' ' + style.active}>Bob</div>
-                <div className={style.dialog}>Alex</div>
-                <div className={style.dialog}>Lili</div>
-                <div className={style.dialog}>Smitty</div>
-                <div className={style.dialog}>Nic</div>
+                <DialogItem name='Bob' id='1'/>
+                <DialogItem name='Alex' id='2'/>
+                <DialogItem name='Lili' id='3'/>
+                <DialogItem name='Smitty' id='4'/>
+                <DialogItem name='Nic' id='5'/>
             </div>
             <div className={style.messages}>
-                <div className={style.message}>Hi!</div>
-                <div className={style.message}>How are you</div>
-                <div className={style.message}>Do you speak English?</div>
+                <MessageItems message='Hi!'/>
+                <MessageItems message='How are you'/>
+                <MessageItems message='Do you speak English?'/>
             </div>
         </div>
     )
