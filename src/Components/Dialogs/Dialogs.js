@@ -11,27 +11,45 @@ function DialogItem(props) {
     )
 }
 
-function MessageItems(props){
+function MessageItems(props) {
     return (
         <div className={style.message}>{props.message}</div>
     )
 }
 
-
 export default function Dialogs() {
+
+    let dialogsData = [
+        {id: 1, name: 'Bob'},
+        {id: 2, name: 'Alex'},
+        {id: 3, name: 'Lili'},
+        {id: 4, name: 'Smitty'},
+        {id: 5, name: 'Nic'}
+    ]
+
+    let messageData = [
+        {id: 1, message: 'Hi1'},
+        {id: 2, message: 'How are you'},
+        {id: 3, message: 'Thanks'},
+        {id: 4, message: 'i am fine'},
+        {id: 5, message: 'Yo'}
+    ]
+
+
+    let dialogsElement = dialogsData
+        .map((el) => (<DialogItem name={el.name} id={el.id}/>))
+
+    let messageElement = messageData
+        .map((el) => (<MessageItems message={el.message} id={el.id}/>))
+
+
     return (
         <div className={style.dialogs}>
             <div className={style.dialogsItems}>
-                <DialogItem name='Bob' id='1'/>
-                <DialogItem name='Alex' id='2'/>
-                <DialogItem name='Lili' id='3'/>
-                <DialogItem name='Smitty' id='4'/>
-                <DialogItem name='Nic' id='5'/>
+                {dialogsElement}
             </div>
             <div className={style.messages}>
-                <MessageItems message='Hi!'/>
-                <MessageItems message='How are you'/>
-                <MessageItems message='Do you speak English?'/>
+                {messageElement}
             </div>
         </div>
     )
