@@ -10,23 +10,23 @@ import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 
 
-export default function App() {
+export default function App({ postData, dialogsData, messageData }) {
 
     return (
         <BrowserRouter>
             <div className={style.body}>
-                    <Header />
-                    <Nav />
+                <Header/>
+                <Nav/>
                 <div className={style.appContent}>
-                    <Route path='/profile' component={Main} />
-                    <Route path='/dialogs' component={Dialogs} />
-                    <Route path='/news' component={News} />
-                    <Route path='/music' component={Music} />
-                    <Route path='/settings' component={Settings} />
+                    <Route path='/profile' render={() => <Main postData={postData}/>}/>
+                    <Route path='/dialogs' render={() => <Dialogs dialogsData={dialogsData} messageData={messageData}/>}/>
+                    <Route path='/news' render={() => <News/>}/>
+                    <Route path='/music' render={() => <Music/>}/>
+                    <Route path='/settings' render={() => <Settings/>}/>
                 </div>
             </div>
         </BrowserRouter>
 
-    )
+)
 
 };
