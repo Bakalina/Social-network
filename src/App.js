@@ -10,7 +10,7 @@ import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 
 
-export default function App({ postData, dialogsData, messageData }) {
+export default function App({state}) {
 
     return (
         <BrowserRouter>
@@ -18,8 +18,9 @@ export default function App({ postData, dialogsData, messageData }) {
                 <Header/>
                 <Nav/>
                 <div className={style.appContent}>
-                    <Route path='/profile' render={() => <Main postData={postData}/>}/>
-                    <Route path='/dialogs' render={() => <Dialogs dialogsData={dialogsData} messageData={messageData}/>}/>
+                    <Route path='/profile' render={() => <Main mainPage={state.mainPage}/>}/>
+                    <Route path='/dialogs'
+                           render={() => <Dialogs messagePage={state.messagePage}/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
@@ -27,6 +28,6 @@ export default function App({ postData, dialogsData, messageData }) {
             </div>
         </BrowserRouter>
 
-)
+    )
 
 };

@@ -3,13 +3,14 @@ import style from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItems from "./Message/Message";
 
-export default function Dialogs({dialogsData, messageData}) {
+export default function Dialogs( {messagePage} ) {
 
-    let dialogsElement = dialogsData
+    let dialogsElement = messagePage.dialogsData
         .map((el) => (<DialogItem name={el.name} id={el.id}/>))
 
-    let messageElement = messageData
+    let messageElement = messagePage.messageData
         .map((el) => (<MessageItems message={el.message} id={el.id}/>))
+
 
     return (
         <div className={style.dialogs}>
