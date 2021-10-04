@@ -1,0 +1,15 @@
+.friend {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.friend img {
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+
+.friend p {
+    margin: 0;
+}

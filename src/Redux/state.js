@@ -24,6 +24,13 @@ let state = {
             {id: 5, message: 'Yo'}
         ]
     },
+    nav: {
+        friends: [
+            {id:1, name:'Bob', avatar:'https://i.pinimg.com/736x/c2/74/aa/c274aa153d376a2365b66af27521d203.jpg'},
+            {id:2, name:'Nick', avatar:'https://cspromogame.ru//storage/upload_images/avatars/3981.jpg'},
+            {id:3, name:'Lili', avatar:'https://lh3.googleusercontent.com/proxy/QUVeBy6BQOnIH2r2evrB1YzMsOb9A4kuFCvZeJmlFDdL-9pfup-IvhwZIt2bi6ZIVJ-EGiOimePFcbXEi367DDDA6bJLr2y2Vw--FxkmbMlSylX3thQQJT9HPR-C-Z1EZcqs528YGSgPr7juIIfAcriabWr_A6ETtlw'},
+        ]
+    }
 };
 
 

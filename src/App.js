@@ -15,8 +15,8 @@ export default function App({state}) {
     return (
         <BrowserRouter>
             <div className={style.body}>
-                <Header/>
-                <Nav/>
+                <Header />
+                <Nav nav={state.nav}/>
                 <div className={style.appContent}>
                     <Route path='/profile' render={() => <Main mainPage={state.mainPage}/>}/>
                     <Route path='/dialogs'
