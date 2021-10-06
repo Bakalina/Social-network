@@ -2,6 +2,11 @@ import React from "react";
 import style from "./Nav.module.css";
 import {NavLink} from "react-router-dom";
 import Friends from "./Friends/Friends";
+import PropTypes from 'prop-types';
+
+Nav.propTypes = {
+    nav: PropTypes.object,
+};
 
 export default function Nav({nav}) {
     return (

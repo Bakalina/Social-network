@@ -1,6 +1,10 @@
 import React from "react";
 import style from './../Dialogs.module.css';
+import PropTypes from 'prop-types';
 
+MessageItems.propTypes = {
+    message: PropTypes.string,
+};
 
 
 
