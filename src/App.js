@@ -12,9 +12,10 @@ import PropTypes from 'prop-types';
 
 App.propTypes = {
     state: PropTypes.object,
+    addPost: PropTypes.func
 };
 
-export default function App({state}) {
+export default function App({state, addPost}) {
 
     return (
         <BrowserRouter>
@@ -22,7 +23,7 @@ export default function App({state}) {
                 <Header />
                 <Nav nav={state.nav}/>
                 <div className={style.appContent}>
-                    <Route path='/profile' render={() => <Main mainPage={state.mainPage}/>}/>
+                    <Route path='/profile' render={() => <Main mainPage={state.mainPage} addPost={addPost}/>}/>
                     <Route path='/dialogs'
                            render={() => <Dialogs messagePage={state.messagePage}/>}/>
                     <Route path='/news' render={() => <News/>}/>

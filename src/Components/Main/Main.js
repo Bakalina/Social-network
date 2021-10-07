@@ -5,15 +5,16 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import PropTypes from 'prop-types';
 
 Main.propTypes = {
-    mainPage: PropTypes.string,
+    mainPage: PropTypes.object,
+    addPost: PropTypes.func
 };
 
-export default function Main({mainPage}) {
+export default function Main({mainPage, addPost}) {
 
     return (
         <div className={ style.main }>
-            <ProfileInfo/>
-            <MyPost postData={mainPage.postData}/>
+            <ProfileInfo addPost={addPost} />
+            <MyPost postData={mainPage.postData} />
         </div>
     )
 }

@@ -1,11 +1,12 @@
+import {rerenderTree} from "../render";
 
 let state = {
     mainPage: {
         postData: [
             {id: 1, message: 'Hi'},
-            {id: 1, message: 'Hello'},
-            {id: 1, message: 'Thanks'},
-            {id: 1, message: 'Yo'}
+            {id: 2, message: 'Hello'},
+            {id: 3, message: 'Thanks'},
+            {id: 4, message: 'Yo'}
         ],
     },
     messagePage: {
@@ -32,6 +33,17 @@ let state = {
         ]
     }
 };
+
+export const addPost = (postMessage) => {
+    debugger
+    let newPost = {
+        id: 5,
+        message : postMessage
+    };
+    state.mainPage.postData.push(newPost);
+    rerenderTree(state)
+
+}
 
 
 export default state;

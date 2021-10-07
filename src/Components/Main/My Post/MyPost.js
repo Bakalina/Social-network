@@ -4,7 +4,7 @@ import Post from "./Post/Post";
 import PropTypes from 'prop-types';
 
 MyPost.propTypes = {
-    postData: PropTypes.string,
+    postData: PropTypes.array,
 };
 
 

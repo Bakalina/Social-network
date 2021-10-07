@@ -18,14 +18,32 @@ export default function Dialogs( {messagePage} ) {
         .map((el) => (<MessageItems key={el.id} message={el.message} id={el.id}/>))
 
 
+    let addTextMessage = React.createRef()
+
+    const onAddMessage = () => {
+        let text = addTextMessage.current.value
+        alert(text)
+
+    }
+
     return (
-        <div className={style.dialogs}>
-            <div className={style.dialogsItems}>
-                {dialogsElement}
+        <>
+            <div className={style.dialogs}>
+                <div className={style.dialogsItems}>
+                    {dialogsElement}
+                </div>
+                <div className={style.messages}>
+                    {messageElement}
+                </div>
             </div>
-            <div className={style.messages}>
-                {messageElement}
+            <div>
+                <h4>Message</h4>
+                <textarea ref={addTextMessage}></textarea>
+                <div>
+                    <button onClick={onAddMessage}>add message</button>
+                </div>
             </div>
-        </div>
+        </>
+
     )
 }

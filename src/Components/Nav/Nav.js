@@ -5,8 +5,10 @@ import Friends from "./Friends/Friends";
 import PropTypes from 'prop-types';
 
 Nav.propTypes = {
-    nav: PropTypes.object,
+    nav: PropTypes.object
 };
+
+
 
 export default function Nav({nav}) {
     return (
