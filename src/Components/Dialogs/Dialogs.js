@@ -38,7 +38,7 @@ export default function Dialogs( {messagePage} ) {
             </div>
             <div>
                 <h4>Message</h4>
-                <textarea ref={addTextMessage}></textarea>
+                <textarea ref={addTextMessage} />
                 <div>
                     <button onClick={onAddMessage}>add message</button>
                 </div>

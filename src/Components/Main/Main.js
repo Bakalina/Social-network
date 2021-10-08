@@ -6,14 +6,15 @@ import PropTypes from 'prop-types';
 
 Main.propTypes = {
     mainPage: PropTypes.object,
-    addPost: PropTypes.func
+    addPost: PropTypes.func,
+    updatePostText: PropTypes.func
 };
 
-export default function Main({mainPage, addPost}) {
+export default function Main({mainPage, addPost, updatePostText}) {
 
     return (
         <div className={ style.main }>
-            <ProfileInfo addPost={addPost} />
+            <ProfileInfo addPost={addPost} newPostText={mainPage.newPostText} updatePostText={updatePostText} />
             <MyPost postData={mainPage.postData} />
         </div>
     )

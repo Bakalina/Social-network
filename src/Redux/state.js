@@ -8,6 +8,7 @@ let state = {
             {id: 3, message: 'Thanks'},
             {id: 4, message: 'Yo'}
         ],
+        newPostText: 'React'
     },
     messagePage: {
         dialogsData: [
@@ -34,16 +35,21 @@ let state = {
     }
 };
 
-export const addPost = (postMessage) => {
-    debugger
+export const addPost = () => {
     let newPost = {
         id: 5,
-        message : postMessage
+        message : state.mainPage.newPostText
     };
     state.mainPage.postData.push(newPost);
+    state.mainPage.newPostText = ''
     rerenderTree(state)
 
 }
 
+export const updatePostText = (newText) => {
+    state.mainPage.newPostText = newText
+    rerenderTree(state)
+
+}
 
 export default state;
