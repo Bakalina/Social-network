@@ -1,5 +1,5 @@
 import React from 'react';
-import state, {subscribe} from "./Redux/state";
+import store from "./Redux/state";
 import ReactDOM from 'react-dom';
 import App from './App';
 import {addPost, updatePostText} from "./Redux/state";
@@ -8,7 +8,7 @@ import {addPost, updatePostText} from "./Redux/state";
 export let rerenderTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App state={state} addPost={addPost} updatePostText={updatePostText}/>
+            <App state={state} addPost={store.addPost.bind(store)} updatePostText={store.updatePostText.bind(store)}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
@@ -17,6 +17,6 @@ export let rerenderTree = (state) => {
 
 
 
-rerenderTree(state);
+rerenderTree(store.getState());
 
-subscribe(rerenderTree);
+store.subscribe(rerenderTree);
