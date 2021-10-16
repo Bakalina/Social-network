@@ -3,23 +3,22 @@ import style from './ProfileInfo.module.css'
 import PropTypes from 'prop-types';
 
 ProfileInfo.propTypes = {
-    addPost: PropTypes.func,
+    dispatch: PropTypes.func,
     newPostText: PropTypes.string,
-    updatePostText: PropTypes.func
 };
 
 
-export default function ProfileInfo({addPost, newPostText, updatePostText}) {
+export default function ProfileInfo({newPostText, dispatch}) {
 
     let newPostElement = React.createRef()
 
     let onAddPost = () => {
-        addPost()
+        dispatch({ type: 'ADD-POST' })
     }
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        updatePostText(text)
+        dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: text })
     }
 
     return (
