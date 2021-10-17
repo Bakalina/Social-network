@@ -14,8 +14,6 @@ export let rerenderTree = (state) => {
 
 }
 
-
-
 rerenderTree(store.getState());
 
 store.subscribe(rerenderTree);

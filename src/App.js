@@ -32,7 +32,6 @@ export default function App({state, dispatch}) {
                 </div>
             </div>
         </BrowserRouter>
-
     )
 
 };
