@@ -1,24 +1,24 @@
 import React from "react";
 import style from './ProfileInfo.module.css'
 import PropTypes from 'prop-types';
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redux/state";
 
 ProfileInfo.propTypes = {
     dispatch: PropTypes.func,
     newPostText: PropTypes.string,
 };
 
-
 export default function ProfileInfo({newPostText, dispatch}) {
 
     let newPostElement = React.createRef()
 
     let onAddPost = () => {
-        dispatch({ type: 'ADD-POST' })
+        dispatch(addPostActionCreator())
     }
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: text })
+        dispatch(updateNewPostTextActionCreator(text))
     }
 
     return (
@@ -27,7 +27,7 @@ export default function ProfileInfo({newPostText, dispatch}) {
             <div className={style.descriptionBlock}>
                 <h3>My post</h3>
                 <div>
-                    <textarea onChange={onPostChange} ref={newPostElement} value={newPostText} />
+                    <textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>
                 </div>
                 <div>
                     <button onClick={onAddPost}>Add post</button>
