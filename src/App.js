@@ -25,7 +25,7 @@ export default function App({state, dispatch}) {
                 <div className={style.appContent}>
                     <Route path='/profile' render={() => <Main mainPage={state.mainPage} dispatch={dispatch}/>}/>
                     <Route path='/dialogs'
-                           render={() => <Dialogs messagePage={state.messagePage}/>}/>
+                           render={() => <Dialogs messagePage={state.messagePage} dispatch={dispatch}/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>

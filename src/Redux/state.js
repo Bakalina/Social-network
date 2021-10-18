@@ -1,5 +1,7 @@
 const addPost = 'ADD-POST';
 const updateNewPostText = 'UPDATE-NEW-POST-TEXT';
+const sendMessage = 'SEND-MESSAGE';
+const updateNewMessageBody = 'UPDATE-NEW-MESSAGE-BODY';
 
 let store = {
     _state: {
@@ -21,12 +23,13 @@ let store = {
                 {id: 5, name: 'Nic'}
             ],
             messageData: [
-                {id: 1, message: 'Hi1'},
+                {id: 1, message: 'Hi!'},
                 {id: 2, message: 'How are you'},
                 {id: 3, message: 'Thanks'},
                 {id: 4, message: 'i am fine'},
                 {id: 5, message: 'Yo'}
-            ]
+            ],
+            newMessageText: 'Body'
         },
         nav: {
             friends: [
@@ -50,7 +53,8 @@ let store = {
         this.rerenderTree = observer;
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+
+        if (action.type === addPost) {
             let newPost = {
                 id: 5,
                 message: this._state.mainPage.newPostText
@@ -58,8 +62,22 @@ let store = {
             this._state.mainPage.postData.push(newPost);
             this._state.mainPage.newPostText = ''
             this.rerenderTree(this._state)
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+
+        } else if (action.type === updateNewPostText) {
             this._state.mainPage.newPostText = action.newText
+            this.rerenderTree(this._state)
+
+        } else if (action.type === sendMessage) {
+            let body = {
+                id: 6,
+                message: this._state.messagePage.newMessageText
+            };
+            this._state.messagePage.messageData.push(body);
+            this._state.messagePage.newMessageText = '';
+            this.rerenderTree(this._state);
+
+        } else if (action.type === updateNewMessageBody) {
+            this._state.messagePage.newMessageText = action.body
             this.rerenderTree(this._state)
         }
     }
@@ -68,7 +86,13 @@ let store = {
 export const addPostActionCreator = () => ({type: addPost})
 
 export const updateNewPostTextActionCreator = text => (
-     {type: updateNewPostText, newText: text}
+    {type: updateNewPostText, newText: text}
+)
+
+export const addMessageActionCreator = () => ({type: sendMessage})
+
+export const updateNewMessageActionCreator = body => (
+    {type: updateNewMessageBody, body: body}
 )
 
 export default store;

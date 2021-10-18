@@ -3,14 +3,16 @@ import style from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItems from "./Message/Message";
 import PropTypes from 'prop-types';
+import {addMessageActionCreator, updateNewMessageActionCreator} from "../../Redux/state";
 
 Dialogs.propTypes = {
     messagePage: PropTypes.object,
+    dispatch: PropTypes.func
+
 };
 
 
-export default function Dialogs( {messagePage} ) {
-
+export default function Dialogs( { messagePage, dispatch } ) {
     let dialogsElement = messagePage.dialogsData
         .map((el) => (<DialogItem key={el.id} name={el.name} id={el.id}/>))
 
@@ -21,9 +23,12 @@ export default function Dialogs( {messagePage} ) {
     let addTextMessage = React.createRef()
 
     const onAddMessage = () => {
-        let text = addTextMessage.current.value
-        alert(text)
+        let body = addTextMessage.current.value;
+        dispatch(updateNewMessageActionCreator(body))
+    }
 
+    const onSendMessageClick = () => {
+        dispatch(addMessageActionCreator())
     }
 
     return (
@@ -38,9 +43,9 @@ export default function Dialogs( {messagePage} ) {
             </div>
             <div>
                 <h4>Message</h4>
-                <textarea ref={addTextMessage} />
+                <textarea onChange={onAddMessage} ref={addTextMessage} value={messagePage.newMessageText} />
                 <div>
-                    <button onClick={onAddMessage}>add message</button>
+                    <button onClick={onSendMessageClick}>add message</button>
                 </div>
             </div>
         </>

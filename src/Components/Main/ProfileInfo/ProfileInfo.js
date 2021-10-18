@@ -9,7 +9,6 @@ ProfileInfo.propTypes = {
 };
 
 export default function ProfileInfo({newPostText, dispatch}) {
-
     let newPostElement = React.createRef()
 
     let onAddPost = () => {
