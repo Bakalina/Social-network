@@ -1,7 +1,6 @@
-const addPost = 'ADD-POST';
-const updateNewPostText = 'UPDATE-NEW-POST-TEXT';
-const sendMessage = 'SEND-MESSAGE';
-const updateNewMessageBody = 'UPDATE-NEW-MESSAGE-BODY';
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
+import sideBarReducer from "./sideBarReducer";
 
 let store = {
     _state: {
@@ -41,7 +40,8 @@ let store = {
                     avatar: 'https://omoro.ru/wp-content/uploads/2018/05/prikilnie-kartinki-na-avatarky-dlia-devyshek-48.jpg'
                 },
             ]
-        }
+        },
+        sideBar: {}
     },
     _rerenderTree() {
         console.log('state')
@@ -54,45 +54,12 @@ let store = {
     },
     dispatch(action) {
 
-        if (action.type === addPost) {
-            let newPost = {
-                id: 5,
-                message: this._state.mainPage.newPostText
-            };
-            this._state.mainPage.postData.push(newPost);
-            this._state.mainPage.newPostText = ''
-            this.rerenderTree(this._state)
+        this._state.mainPage = profileReducer(this._state.mainPage, action);
+        this._state.messagePage = dialogsReducer(this._state.messagePage, action);
+        this._state.sideBar = sideBarReducer(this._state.sideBar, action);
 
-        } else if (action.type === updateNewPostText) {
-            this._state.mainPage.newPostText = action.newText
-            this.rerenderTree(this._state)
-
-        } else if (action.type === sendMessage) {
-            let body = {
-                id: 6,
-                message: this._state.messagePage.newMessageText
-            };
-            this._state.messagePage.messageData.push(body);
-            this._state.messagePage.newMessageText = '';
-            this.rerenderTree(this._state);
-
-        } else if (action.type === updateNewMessageBody) {
-            this._state.messagePage.newMessageText = action.body
-            this.rerenderTree(this._state)
-        }
+        this.rerenderTree(this._state);
     }
 }
-
-export const addPostActionCreator = () => ({type: addPost})
-
-export const updateNewPostTextActionCreator = text => (
-    {type: updateNewPostText, newText: text}
-)
-
-export const addMessageActionCreator = () => ({type: sendMessage})
-
-export const updateNewMessageActionCreator = body => (
-    {type: updateNewMessageBody, body: body}
-)
 
 export default store;

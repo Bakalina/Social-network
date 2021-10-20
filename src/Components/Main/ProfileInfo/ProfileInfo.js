@@ -1,7 +1,7 @@
 import React from "react";
 import style from './ProfileInfo.module.css'
 import PropTypes from 'prop-types';
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redux/state";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redux/profileReducer";
 
 ProfileInfo.propTypes = {
     dispatch: PropTypes.func,
