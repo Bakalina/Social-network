@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Nav.module.css";
 import {NavLink} from "react-router-dom";
 import PropTypes from 'prop-types';
+import Friends from "./Friends/Friends";
 
 
 Nav.propTypes = {
@@ -20,7 +21,7 @@ export default function Nav({nav}) {
                 <li><NavLink activeClassName={style.active} to='/music'>Music</NavLink></li>
                 <li><NavLink activeClassName={style.active} to='/settings'>Settings</NavLink></li>
             </ul>
-            {/*<Friends friends={nav.friends}/>*/}
+            <Friends friends={nav.friends}/>
         </div>
 
     )
