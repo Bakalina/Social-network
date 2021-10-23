@@ -6,12 +6,12 @@ import Friends from "./Friends/Friends";
 
 
 Nav.propTypes = {
-    nav: PropTypes.object
+    state: PropTypes.object
 };
 
 
 
-export default function Nav({nav}) {
+export default function Nav(state) {
     return (
         <div className={style.page}>
             <ul className={style.ul}>
@@ -21,7 +21,7 @@ export default function Nav({nav}) {
                 <li><NavLink activeClassName={style.active} to='/music'>Music</NavLink></li>
                 <li><NavLink activeClassName={style.active} to='/settings'>Settings</NavLink></li>
             </ul>
-            <Friends friends={nav.friends}/>
+            <Friends state={state}/>
         </div>
 
     )

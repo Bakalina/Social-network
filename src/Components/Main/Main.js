@@ -5,16 +5,16 @@ import PropTypes from 'prop-types';
 import ProfileInfoContainer from "./ProfileInfo/ProfileInfoContainer";
 
 Main.propTypes = {
-    mainPage: PropTypes.object,
+    state: PropTypes.object,
     dispatch: PropTypes.func
+
 };
 
-export default function Main({mainPage, dispatch}) {
-
+export default function Main({state, dispatch}) {
     return (
         <div className={ style.main }>
-            <ProfileInfoContainer dispatch={dispatch} newPostText={mainPage.newPostText} />
-            <MyPost postData={mainPage.postData} />
+            <ProfileInfoContainer state={state} dispatch={dispatch}/>
+            <MyPost state={state} />
         </div>
     )
 }

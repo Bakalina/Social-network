@@ -2,7 +2,7 @@ import profileReducer from "./profileReducer";
 import dialogsReducer from "./dialogsReducer";
 import sideBarReducer from "./sideBarReducer";
 
-let store = {
+let storeStudy = {
     _state: {
         mainPage: {
             postData: [
@@ -62,4 +62,4 @@ let store = {
     }
 }
 
-export default store;
+export default storeStudy;

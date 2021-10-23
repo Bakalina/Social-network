@@ -5,10 +5,10 @@ import ProfileInfo from "./ProfileInfo";
 
 ProfileInfoContainer.propTypes = {
     dispatch: PropTypes.func,
-    newPostText: PropTypes.string,
+    state: PropTypes.object
 };
 
-export default function ProfileInfoContainer({dispatch}) {
+export default function ProfileInfoContainer({state, dispatch}) {
 
     let onAddPost = () => {
         dispatch(addPostActionCreator())
@@ -19,6 +19,6 @@ export default function ProfileInfoContainer({dispatch}) {
     }
 
     return (
-        <ProfileInfo updateNewPost={onPostChange} addPost={onAddPost} />
+        <ProfileInfo updateNewPost={onPostChange} addPost={onAddPost} newPostText={state.mainPage.newPostText}/>
     )
 }
