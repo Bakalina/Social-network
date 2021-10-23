@@ -1,8 +1,8 @@
 import React from "react";
 import style from './Main.module.css'
 import MyPost from "./My Post/MyPost";
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import PropTypes from 'prop-types';
+import ProfileInfoContainer from "./ProfileInfo/ProfileInfoContainer";
 
 Main.propTypes = {
     mainPage: PropTypes.object,
@@ -13,7 +13,7 @@ export default function Main({mainPage, dispatch}) {
 
     return (
         <div className={ style.main }>
-            <ProfileInfo dispatch={dispatch} newPostText={mainPage.newPostText} />
+            <ProfileInfoContainer dispatch={dispatch} newPostText={mainPage.newPostText} />
             <MyPost postData={mainPage.postData} />
         </div>
     )

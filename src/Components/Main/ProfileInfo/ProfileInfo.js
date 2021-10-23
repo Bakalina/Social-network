@@ -1,23 +1,23 @@
 import React from "react";
 import style from './ProfileInfo.module.css'
 import PropTypes from 'prop-types';
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redux/profileReducer";
 
 ProfileInfo.propTypes = {
-    dispatch: PropTypes.func,
+    addPost: PropTypes.func,
+    updateNewPost: PropTypes.func,
     newPostText: PropTypes.string,
 };
 
-export default function ProfileInfo({newPostText, dispatch}) {
+export default function ProfileInfo({newPostText, updateNewPost, addPost}) {
     let newPostElement = React.createRef()
 
     let onAddPost = () => {
-        dispatch(addPostActionCreator())
+        addPost();
     }
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        dispatch(updateNewPostTextActionCreator(text))
+        updateNewPost(text)
     }
 
     return (

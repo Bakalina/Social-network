@@ -16,7 +16,6 @@ App.propTypes = {
 };
 
 export default function App({state, dispatch}) {
-    console.log(state)
     return (
         <BrowserRouter>
             <div className={style.body}>
