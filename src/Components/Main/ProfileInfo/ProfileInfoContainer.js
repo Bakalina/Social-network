@@ -1,24 +1,24 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redux/profileReducer";
 import ProfileInfo from "./ProfileInfo";
+import StoreContext from "../../../StoreContext";
 
-ProfileInfoContainer.propTypes = {
-    dispatch: PropTypes.func,
-    state: PropTypes.object
-};
 
-export default function ProfileInfoContainer({state, dispatch}) {
+export default function ProfileInfoContainer() {
+    return <StoreContext.Consumer>
+            {(store) => {
+                let state = store.getState()
+                let onAddPost = () => {
+                    store.dispatch(addPostActionCreator())
+                }
 
-    let onAddPost = () => {
-        dispatch(addPostActionCreator())
-    }
+                let onPostChange = (text) => {
+                    store.dispatch(updateNewPostTextActionCreator(text))
+                }
+                return <ProfileInfo updateNewPost={onPostChange}
+                                    addPost={onAddPost}
+                                    newPostText={state.mainPage.newPostText}/>
+            }}
+        </StoreContext.Consumer>
 
-    let onPostChange = (text) => {
-        dispatch(updateNewPostTextActionCreator(text))
-    }
-
-    return (
-        <ProfileInfo updateNewPost={onPostChange} addPost={onAddPost} newPostText={state.mainPage.newPostText}/>
-    )
 }

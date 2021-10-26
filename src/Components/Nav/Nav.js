@@ -1,17 +1,10 @@
 import React from "react";
 import style from "./Nav.module.css";
 import {NavLink} from "react-router-dom";
-import PropTypes from 'prop-types';
 import Friends from "./Friends/Friends";
 
 
-Nav.propTypes = {
-    state: PropTypes.object
-};
-
-
-
-export default function Nav(state) {
+export default function Nav() {
     return (
         <div className={style.page}>
             <ul className={style.ul}>
@@ -21,7 +14,7 @@ export default function Nav(state) {
                 <li><NavLink activeClassName={style.active} to='/music'>Music</NavLink></li>
                 <li><NavLink activeClassName={style.active} to='/settings'>Settings</NavLink></li>
             </ul>
-            <Friends state={state}/>
+            <Friends />
         </div>
 
     )

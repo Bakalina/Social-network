@@ -1,25 +1,29 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import {addMessageActionCreator, updateNewMessageActionCreator} from "../../Redux/dialogsReducer";
 import Dialogs from "./Dialogs";
-
-DialogsContainer.propTypes = {
-    dispatch: PropTypes.func,
-    state: PropTypes.object
-};
+import StoreContext from "../../StoreContext";
 
 
-export default function DialogsContainer({state, dispatch}) {
+export default function DialogsContainer() {
 
-    let onAddMessage = (body) => {
-        dispatch(updateNewMessageActionCreator(body))
-    }
+    return <StoreContext.Consumer>
+            { (store) => {
+            let state = store.getState();
 
-    let onSendMessageClick = () => {
-        dispatch(addMessageActionCreator())
-    }
+            let onAddMessage = (body) => {
+                store.dispatch(updateNewMessageActionCreator(body))
+            }
+            let onSendMessageClick = () => {
+                store.dispatch(addMessageActionCreator())
+            }
+            return (
+                <Dialogs updateNewMessage={onAddMessage}
+                         addMessage={onSendMessageClick}
+                         state={state} />
+                )
 
-    return (
-        <Dialogs updateNewMessage={onAddMessage} addMessage={onSendMessageClick} state={state} />
-    )
+        }}
+        </StoreContext.Consumer>
+
+
 }

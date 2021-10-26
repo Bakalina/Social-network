@@ -2,12 +2,15 @@ import React from 'react';
 import store from "./Redux/reduxStore";
 import ReactDOM from 'react-dom';
 import App from './App';
+import StoreContext from "./StoreContext";
 
 
-export let rerenderTree = (state) => {
+export let rerenderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
-            <App state={state} dispatch={store.dispatch.bind(store)}/>
+            <StoreContext.Provider value={store}>
+                <App />
+            </StoreContext.Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );
@@ -17,6 +20,6 @@ export let rerenderTree = (state) => {
 rerenderTree(store.getState());
 
 store.subscribe(()=>{
-    let state= store.getState();
+    let state = store.getState();
     rerenderTree(state);
 });
