@@ -14,7 +14,7 @@ export default function Nav() {
                 <li><NavLink activeClassName={style.active} to='/music'>Music</NavLink></li>
                 <li><NavLink activeClassName={style.active} to='/settings'>Settings</NavLink></li>
             </ul>
-            <Friends />
+            {/*<Friends />*/}
         </div>
 
     )
