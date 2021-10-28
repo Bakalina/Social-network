@@ -1,14 +1,14 @@
 import React from "react";
 import style from './Main.module.css'
-import MyPost from "./My Post/MyPost";
 import ProfileInfoContainer from "./ProfileInfo/ProfileInfoContainer";
+import MyPostContainer from "./My Post/MyPost";
 
 
 export default function Main() {
     return (
         <div className={ style.main }>
             <ProfileInfoContainer />
-            <MyPost />
+            <MyPostContainer />
         </div>
     )
 }

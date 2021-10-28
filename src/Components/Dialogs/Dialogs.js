@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
 
 Dialogs.propTypes = {
     state: PropTypes.object,
-    updateNewMessage: PropTypes.func,
-    addMessage: PropTypes.func
+    onSendMessageClick: PropTypes.func,
+    onAddMessage: PropTypes.func
 
 };
 
 
-export default function Dialogs({state, updateNewMessage, addMessage} ) {
-
+export default function Dialogs({state, onSendMessageClick, onAddMessage} ) {
+    console.log(state)
     let dialogsElement = state.messagePage.dialogsData
         .map((el) => (<DialogItem key={el.id} name={el.name} id={el.id}/>))
 
@@ -23,13 +23,13 @@ export default function Dialogs({state, updateNewMessage, addMessage} ) {
 
     let newPostElement = React.createRef()
 
-    let onAddMessage = () => {
-        addMessage();
+    let AddMessage = () => {
+        onAddMessage();
     }
 
     let onUpdateNewMessage = () => {
         let text = newPostElement.current.value;
-        updateNewMessage(text)
+        onSendMessageClick(text)
     }
 
     return (
@@ -46,7 +46,7 @@ export default function Dialogs({state, updateNewMessage, addMessage} ) {
                 <h4>Message</h4>
                 <textarea onChange={onUpdateNewMessage} ref={newPostElement} value={state.messagePage.newMessageText} />
                 <div>
-                    <button onClick={onAddMessage}>add message</button>
+                    <button onClick={AddMessage}>add message</button>
                 </div>
             </div>
         </>

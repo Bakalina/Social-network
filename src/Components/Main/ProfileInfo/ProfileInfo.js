@@ -3,21 +3,23 @@ import style from './ProfileInfo.module.css'
 import PropTypes from 'prop-types';
 
 ProfileInfo.propTypes = {
-    addPost: PropTypes.func,
-    updateNewPost: PropTypes.func,
+    onPostChange: PropTypes.func,
+    onAddPost: PropTypes.func,
     newPostText: PropTypes.string,
 };
 
-export default function ProfileInfo({newPostText, updateNewPost, addPost}) {
+export default function ProfileInfo({newPostText, onPostChange, onAddPost}) {
+
+
     let newPostElement = React.createRef()
 
-    let onAddPost = () => {
-        addPost();
+    let AddPost = () => {
+        onAddPost();
     }
 
-    let onPostChange = () => {
+    let PostChange = () => {
         let text = newPostElement.current.value;
-        updateNewPost(text)
+        onPostChange(text)
     }
 
     return (
@@ -26,10 +28,10 @@ export default function ProfileInfo({newPostText, updateNewPost, addPost}) {
             <div className={style.descriptionBlock}>
                 <h3>My post</h3>
                 <div>
-                    <textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>
+                    <textarea onChange={PostChange} ref={newPostElement} value={newPostText}/>
                 </div>
                 <div>
-                    <button onClick={onAddPost}>Add post</button>
+                    <button onClick={AddPost}>Add post</button>
                 </div>
             </div>
         </div>
