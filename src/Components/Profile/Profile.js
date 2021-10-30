@@ -4,7 +4,7 @@ import ProfileInfoContainer from "./ProfileInfo/ProfileInfoContainer";
 import MyPostContainer from "./My Post/MyPost";
 
 
-export default function Main() {
+export default function Profile() {
     return (
         <div className={ style.main }>
             <ProfileInfoContainer />

@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Components/Header/Header";
 import Nav from "./Components/Nav/Nav";
-import Main from "./Components/Main/Main";
+import Profile from "./Components/Profile/Profile";
 import style from "./App.module.css"
 import {BrowserRouter, Route} from "react-router-dom";
 import News from "./Components/News/News";
@@ -18,7 +18,7 @@ export default function App() {
                 <Header />
                 <Nav />
                 <div className={style.appContent}>
-                    <Route path='/profile' render={() => <Main />}/>
+                    <Route path='/profile' render={() => <Profile />}/>
                     <Route path='/dialogs'
                            render={() => <DialogsContainer />}/>
                     <Route path='/news' render={() => <News/>}/>
