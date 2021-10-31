@@ -14,6 +14,7 @@ Dialogs.propTypes = {
 
 export default function Dialogs({state, onSendMessageClick, onAddMessage} ) {
     console.log(state)
+
     let dialogsElement = state.messagePage.dialogsData
         .map((el) => (<DialogItem key={el.id} name={el.name} id={el.id}/>))
 
@@ -24,12 +25,12 @@ export default function Dialogs({state, onSendMessageClick, onAddMessage} ) {
     let newPostElement = React.createRef()
 
     let AddMessage = () => {
-        onAddMessage();
+        onSendMessageClick();
     }
 
     let onUpdateNewMessage = () => {
         let text = newPostElement.current.value;
-        onSendMessageClick(text)
+        onAddMessage(text)
     }
 
     return (
