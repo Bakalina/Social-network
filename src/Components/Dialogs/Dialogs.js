@@ -13,7 +13,6 @@ Dialogs.propTypes = {
 
 
 export default function Dialogs({state, onSendMessageClick, onAddMessage} ) {
-    console.log(state)
 
     let dialogsElement = state.messagePage.dialogsData
         .map((el) => (<DialogItem key={el.id} name={el.name} id={el.id}/>))
