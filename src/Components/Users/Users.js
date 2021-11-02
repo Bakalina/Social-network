@@ -1,38 +1,33 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 
-
-
-const Users = (mapStateToProps) => {
-    console.log(users)
+export default function Users(props) {
     return <div>
-        {
-            users.map(el => {
-                <div key={el.id}>
+        {/* eslint-disable-next-line react/prop-types */}
+        {props.users.map(el =>
+            <div key={el.id}>
+                <span>
+                    <div><img width='100px' alt='image' src={el.photoUrl}/></div>
                     <div>
-                        <div>
-                            <img alt='image' src={el.photoUrl}/>
-                        </div>
-                        <div>
-                            <button>{el.followed}</button>
-                        </div>
+                        { el.followed
+                            // eslint-disable-next-line react/prop-types
+                            ? <button onClick={()=>{props.unFollow(el.id)}}>Unfollow</button>
+                            // eslint-disable-next-line react/prop-types
+                            : <button onClick={()=>{props.follow(el.id)}}>Follow</button> }
                     </div>
-                    <div>
-                        <div>
-                            <div>{el.fullName}</div>
-                            <div>{el.status}</div>
-                        </div>
-                        <div>
-                            <div>{el.location.city}</div>
-                            <div>{el.location.country}</div>
-                        </div>
-                    </div>
-                </div>
-            })
-        }
+                </span>
+                <span>
+                    <span>
+                        <div>{el.fullName}</div>
+                        <div>{el.status}</div>
+                    </span>
+                    <span>
+                        <div>{el.location.city}</div>
+                        <div>{el.location.country}</div>
+                    </span>
+                </span>
+            </div>)}
     </div>
 }
 
 
-export default Users;
