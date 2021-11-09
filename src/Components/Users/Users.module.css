@@ -1,0 +1,17 @@
+.users {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin: 10px;
+    padding: 5px;
+    border: 2px solid black;
+}
+
+.selectedPage {
+    font-weight: bold;
+    margin: 0 8px;
+}

@@ -1,21 +1,51 @@
 import React from "react";
 import * as axios from "axios";
-
+import style from './Users.module.css'
 
 class Users extends React.Component {
 
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        // eslint-disable-next-line react/prop-types
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                // eslint-disable-next-line react/prop-types
+                this.props.setUsers(response.data.items);
+                // eslint-disable-next-line react/prop-types
+                this.props.setTotalUsersCount(response.data.totalCount)
+            })
+    }
+
+    onPageChange(pageNumber) {
+        // eslint-disable-next-line react/prop-types
+        this.props.setCurrentPage(pageNumber);
+        // eslint-disable-next-line react/prop-types
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then(response => {
                 // eslint-disable-next-line react/prop-types
                 this.props.setUsers(response.data.items)})
     }
 
     render() {
-        return <div>
+        // eslint-disable-next-line react/prop-types
+        let pageCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
+
+        let pages = [];
+        for (let i = 1; i <= pageCount; i++ ) {
+            pages.push(i)
+        }
+
+        return <>
+            <div>
+                {pages.map(el=>{
+                    // eslint-disable-next-line react/prop-types,react/jsx-key
+                  return <button onClick={(e)=> {this.onPageChange(el)}} className={this.props.currentPage === el && style.selectedPage}>{el}</button>
+                })}
+            </div>
+        <div className={style.users}>
+
             {/* eslint-disable-next-line react/prop-types */}
             {this.props.users.map(el =>
-                <div key={el.id}>
+                <div className={style.card} key={el.id}>
                     <span>
                         <div><img width='70px' alt='image'
                                   src={el.photos.small != null
@@ -41,6 +71,7 @@ class Users extends React.Component {
                     </span>
                 </div>)}
             </div>
+        </>
         }
     }
 
