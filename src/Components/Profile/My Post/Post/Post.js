@@ -1,10 +1,5 @@
 import React from "react";
 import style from './Post.module.css';
-import PropTypes from 'prop-types';
-
-Post.propTypes = {
-    message: PropTypes.string,
-};
 
 
 

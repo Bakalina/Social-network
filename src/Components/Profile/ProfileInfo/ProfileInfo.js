@@ -1,12 +1,6 @@
 import React from "react";
 import style from './ProfileInfo.module.css'
-import PropTypes from 'prop-types';
 
-ProfileInfo.propTypes = {
-    onPostChange: PropTypes.func,
-    onAddPost: PropTypes.func,
-    newPostText: PropTypes.string,
-};
 
 export default function ProfileInfo({newPostText, onPostChange, onAddPost}) {
 

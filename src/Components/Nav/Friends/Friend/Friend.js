@@ -1,11 +1,6 @@
 import React from "react";
 import style from './Friend.module.css'
-import PropTypes from 'prop-types';
 
-Friend.propTypes = {
-    name: PropTypes.string,
-    avatar: PropTypes.string
-};
 
 export default function Friend({avatar, name}) {
     return (

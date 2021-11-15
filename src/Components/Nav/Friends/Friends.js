@@ -1,5 +1,6 @@
 import React from "react";
 import Friend from "./Friend/Friend";
+import store from "../../../Redux/reduxStore";
 
 
 export default function Friends() {

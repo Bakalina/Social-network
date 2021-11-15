@@ -2,14 +2,6 @@ import React from "react";
 import style from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItems from "./Message/Message";
-import PropTypes from 'prop-types';
-
-Dialogs.propTypes = {
-    state: PropTypes.object,
-    onSendMessageClick: PropTypes.func,
-    onAddMessage: PropTypes.func
-
-};
 
 
 export default function Dialogs({state, onSendMessageClick, onAddMessage} ) {
