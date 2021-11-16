@@ -1,6 +1,7 @@
 import React from "react";
 import * as axios from "axios";
 import style from './Users.module.css'
+import ReactPaginate from 'react-paginate';
 
 class Users extends React.Component {
 
@@ -21,21 +22,37 @@ class Users extends React.Component {
 
     render() {
         let pageCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
-
         let pages = [];
         for (let i = 1; i <= pageCount; i++ ) {
             pages.push(i)
         }
 
-        return <>
-            <div>
-                {pages.map(el=>{
-                    // eslint-disable-next-line react/jsx-key
-                  return <button onClick={()=> {this.onPageChange(el)}} className={this.props.currentPage === el && style.selectedPage}>{el}</button>
-                })}
-            </div>
-        <div className={style.users}>
+        const handlePageClick = () => {
+            let obj = pages.map(el=>{this.onPageChange(el)})
+           return obj
+        }
 
+        console.log(this.onPageChange)
+
+        return <>
+            <>
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel=">"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={pageCount}
+                    previousLabel="<"
+                    renderOnZeroPageCount={null}
+                />
+            </>
+            {/*<div>*/}
+            {/*    {pages.map(el=>{*/}
+            {/*        // eslint-disable-next-line react/jsx-key*/}
+            {/*      return <button onClick={()=> {this.onPageChange(el)}} className={this.props.currentPage === el && style.selectedPage}>{el}</button>*/}
+            {/*    })}*/}
+            {/*</div>*/}
+        <div className={style.users}>
             {this.props.users.map(el =>
                 <div className={style.card} key={el.id}>
                     <span>
