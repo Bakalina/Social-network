@@ -1,5 +1,6 @@
 import React from "react";
 import style from './Users.module.css'
+import ReactPaginate from 'react-paginate';
 
 const Users = (props) => {
 
@@ -8,12 +9,28 @@ const Users = (props) => {
         for (let i = 1; i <= pageCount; i++) {
             pages.push(i)
         }
+
+        const handlePageClick = (e) => {
+            return <button onClick={(e) => props.onPageChange(e)}></button>
+        }
+
+
+
         return <>
-            <div>
-                {pages.map((el, i)=>{
-                  return <button key={i} onClick={()=> {props.onPageChange(el)}} className={props.currentPage === el && style.selectedPage}>{el}</button>
-                })}
-            </div>
+            <ReactPaginate
+                breakLabel="..."
+                nextLabel="next >"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={pageCount}
+                previousLabel="< previous"
+                renderOnZeroPageCount={null}
+            />
+            {/*<div>*/}
+            {/*    {pages.map((el, i)=>{*/}
+            {/*      return <button key={i} onClick={()=> {props.onPageChange(el)}} className={props.currentPage === el && style.selectedPage}>{el}</button>*/}
+            {/*    })}*/}
+            {/*</div>*/}
             <div className={style.users}>
                 {props.users.map(el =>
                     <div className={style.card} key={el.id}>
