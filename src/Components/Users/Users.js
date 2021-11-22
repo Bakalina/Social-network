@@ -10,27 +10,11 @@ const Users = (props) => {
             pages.push(i)
         }
 
-        const handlePageClick = (e) => {
-            return <button onClick={(e) => props.onPageChange(e)}></button>
+        const handlePageClick = ({selected}) => {
+             props.onPageChange(selected+1)
         }
 
-
-
         return <>
-            <ReactPaginate
-                breakLabel="..."
-                nextLabel="next >"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
-                pageCount={pageCount}
-                previousLabel="< previous"
-                renderOnZeroPageCount={null}
-            />
-            {/*<div>*/}
-            {/*    {pages.map((el, i)=>{*/}
-            {/*      return <button key={i} onClick={()=> {props.onPageChange(el)}} className={props.currentPage === el && style.selectedPage}>{el}</button>*/}
-            {/*    })}*/}
-            {/*</div>*/}
             <div className={style.users}>
                 {props.users.map(el =>
                     <div className={style.card} key={el.id}>
@@ -61,6 +45,20 @@ const Users = (props) => {
                     </span>
                     </div>)}
             </div>
+            <ReactPaginate
+                breakLabel="..."
+                nextLabel=">"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={pageCount}
+                previousLabel="<"
+                renderOnZeroPageCount={null}
+                containerClassName={style.paginate}
+                pageClassName={style.paginateLi}
+                activeClassName={style.paginateLiActive}
+                previousClassName={style.paginateLiPrevious}
+                nextClassName={style.paginateLiNext}
+            />
         </>
 
 }

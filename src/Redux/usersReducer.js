@@ -7,7 +7,7 @@ const setTotalUsersCount = 'SET-TOTAL-USERS-COUNT'
 let initialState = {
     users: [],
     pageSize: 12,
-    totalUsersCount: 100,
+    totalUsersCount: 0,
     currentPage: 1,
     newPostText: 'React'
 }
