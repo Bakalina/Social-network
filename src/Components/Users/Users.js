@@ -1,6 +1,7 @@
 import React from "react";
 import style from './Users.module.css'
 import ReactPaginate from 'react-paginate';
+import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
 
@@ -19,10 +20,14 @@ const Users = (props) => {
                 {props.users.map(el =>
                     <div className={style.card} key={el.id}>
                     <span>
-                        <div><img width='70px' alt='image'
-                                  src={el.photos.small != null
-                                      ? el.photos.small
-                                      : 'https://klike.net/uploads/posts/2019-03/1551511801_1.jpg'}/></div>
+                        <div>
+                            <NavLink to={'/profile/' + el.id}>
+                                <img width='70px' alt='image'
+                                     src={el.photos.small != null
+                                         ? el.photos.small
+                                         : 'https://klike.net/uploads/posts/2019-03/1551511801_1.jpg'}/>
+                            </NavLink>
+                        </div>
                         <div>
                             {el.followed
                                 ? <button onClick={() => {

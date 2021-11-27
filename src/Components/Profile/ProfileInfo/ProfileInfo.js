@@ -18,7 +18,7 @@ export default function ProfileInfo({newPostText, onPostChange, onAddPost}) {
 
     return (
         <div>
-            <img alt={'image'} width='400px' src='https://klike.net/uploads/posts/2019-06/1559370578_1.jpg'/>
+
             <div className={style.descriptionBlock}>
                 <h3>My post</h3>
                 <div>
