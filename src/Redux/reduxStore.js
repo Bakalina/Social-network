@@ -4,6 +4,7 @@ import profileReducer from "./profileReducer";
 import sideBarReducer from "./sideBarReducer";
 import navReducers from "./navReducers";
 import usersReducer from "./usersReducer";
+import authReducer from "./authReducer";
 
 
  let reducers = combineReducers({
@@ -11,7 +12,8 @@ import usersReducer from "./usersReducer";
      mainPage :profileReducer,
      sideBar: sideBarReducer,
      nav: navReducers,
-     usersPage: usersReducer
+     usersPage: usersReducer,
+     auth: authReducer
  })
 
 let store = createStore(reducers)

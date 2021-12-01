@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "./Components/Header/Header";
 import Nav from "./Components/Nav/Nav";
 import style from "./App.module.css"
 import {BrowserRouter, Route} from "react-router-dom";
@@ -9,6 +8,7 @@ import Settings from "./Components/Settings/Settings";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
+import HeaderContainer from "./Components/Header/HeaderContainer";
 
 
 
@@ -16,7 +16,7 @@ export default function App() {
     return (
         <BrowserRouter>
             <div className={style.body}>
-                <Header />
+                <HeaderContainer />
                 <Nav />
                 <div className={style.appContent}>
                     <Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
