@@ -2,7 +2,6 @@ import React from "react";
 import style from './Users.module.css';
 import ReactPaginate from 'react-paginate';
 import {NavLink} from "react-router-dom";
-import {followApi} from "../../Api/Api";
 
 
 const Users = (props) => {
@@ -33,22 +32,10 @@ const Users = (props) => {
                         <div>
                             {el.followed
                                 ? <button disabled={props.followingInProgress} onClick={()=> {
-                                    props.toggleIsFollowingProgress(true)
-                                    followApi.getUnFollow(el.id).then(data => {
-                                            if(data.resultCode === 0) {
-                                                props.unFollow(el.id)
-                                            }
-                                        props.toggleIsFollowingProgress(false)
-                                        })
+                                    props.unFollow(el.id)
                                 }}>Unfollow</button>
                                 : <button disabled={props.followingInProgress} onClick={() => {
-                                    props.toggleIsFollowingProgress(true)
-                                    followApi.getFollow(el.id).then(data => {
-                                            if(data.resultCode === 0) {
-                                                props.follow(el.id)
-                                            }
-                                        props.toggleIsFollowingProgress(false)
-                                        })
+                                   props.follow(el.id)
                                 }}>Follow</button>}
                         </div>
                     </span>

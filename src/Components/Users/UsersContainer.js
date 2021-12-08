@@ -32,8 +32,6 @@ class UsersAPI extends React.Component {
                 pageSize={this.props.pageSize}
                 onPageChange={this.onPageChanged}
                 currentPage={this.props.currentPage}
-                toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
-                followingInProgress={this.props.followingInProgress}
             />
         </>
 
