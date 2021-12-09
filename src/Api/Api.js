@@ -1,4 +1,5 @@
 import * as axios from "axios";
+import data from "bootstrap/js/src/dom/data";
 
 
 const instance = axios.create({

@@ -4,7 +4,6 @@ import logo from "../../image/logo22.png";
 import {NavLink} from "react-router-dom";
 
 export default function Header(props){
-
     return (
         <div className={style.head}>
             <img alt={'logo'} src={logo}/>
