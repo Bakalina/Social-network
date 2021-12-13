@@ -2,9 +2,10 @@ import React from "react";
 import style from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItems from "./Message/Message";
+import {Redirect} from "react-router-dom";
 
 
-export default function Dialogs({state, onSendMessageClick, onAddMessage} ) {
+export default function Dialogs({state, onSendMessageClick, onAddMessage, isAuth} ) {
 
     let dialogsElement = state.messagePage.dialogsData
         .map((el) => (<DialogItem key={el.id} name={el.name} id={el.id}/>))
@@ -23,6 +24,8 @@ export default function Dialogs({state, onSendMessageClick, onAddMessage} ) {
         let text = newPostElement.current.value;
         onAddMessage(text)
     }
+
+    if (!isAuth) return <Redirect to={'/login'} />
 
     return (
         <>
