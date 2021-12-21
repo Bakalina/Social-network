@@ -8,7 +8,7 @@ import ProfileUser from "./ProfileUser/ProfileUser";
 export default function Profile(props) {
     return (
         <div className={ style.main }>
-            <img alt={'image'} width='400px' src='https://klike.net/uploads/posts/2019-06/1559370578_1.jpg'/>
+            {/*<img alt={'image'} width='400px' src='https://klike.net/uploads/posts/2019-06/1559370578_1.jpg'/>*/}
             <ProfileUser profile={props.profile} />
             <ProfileInfoContainer />
             <MyPostContainer />
