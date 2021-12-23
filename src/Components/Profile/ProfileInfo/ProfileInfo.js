@@ -2,18 +2,18 @@ import React from "react";
 import style from './ProfileInfo.module.css'
 
 
-export default function ProfileInfo({newPostText, onPostChange, onAddPost}) {
+export default function ProfileInfo(props) {
 
 
     let newPostElement = React.createRef()
 
     let AddPost = () => {
-        onAddPost();
+        props.onAddPost();
     }
 
     let PostChange = () => {
         let text = newPostElement.current.value;
-        onPostChange(text)
+        props.onPostChange(text)
     }
 
     return (
@@ -22,7 +22,7 @@ export default function ProfileInfo({newPostText, onPostChange, onAddPost}) {
             <div className={style.descriptionBlock}>
                 <h3>My post</h3>
                 <div>
-                    <textarea onChange={PostChange} ref={newPostElement} value={newPostText}/>
+                    <textarea onChange={PostChange} ref={newPostElement} value={props.newPostText}/>
                 </div>
                 <div>
                     <button onClick={AddPost}>Add post</button>

@@ -3,7 +3,7 @@ import Preloader from "../../Preloader/Preloader";
 import style from "./ProfileUser.module.css";
 import ProfileInfoStatus from "./ProfileInfoStatus";
 
-const ProfileUser = ( props ) => {
+const ProfileUser = (props) => {
     if (!props.profile) {
         return <Preloader/>
     }

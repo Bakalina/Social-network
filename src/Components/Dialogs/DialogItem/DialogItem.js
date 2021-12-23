@@ -3,11 +3,11 @@ import style from './../Dialogs.module.css';
 import {NavLink} from "react-router-dom";
 
 
-export default function DialogItem({id, name}) {
+export default function DialogItem(props) {
 
     return (
         <div className={style.dialog}>
-            <NavLink to={'/dialogs/' + id}>{name}</NavLink>
+            <NavLink to={'/dialogs/' + props.id}>{props.name}</NavLink>
         </div>
     )
 }

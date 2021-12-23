@@ -5,27 +5,27 @@ import MessageItems from "./Message/Message";
 import {Redirect} from "react-router-dom";
 
 
-export default function Dialogs({state, onSendMessageClick, onAddMessage, isAuth} ) {
+export default function Dialogs(props) {
 
-    let dialogsElement = state.messagePage.dialogsData
+    let dialogsElement = props.state.messagePage.dialogsData
         .map((el) => (<DialogItem key={el.id} name={el.name} id={el.id}/>))
 
-    let messageElement = state.messagePage.messageData
+    let messageElement = props.state.messagePage.messageData
         .map((el) => (<MessageItems key={el.id} message={el.message} id={el.id}/>))
 
 
     let newPostElement = React.createRef()
 
     let AddMessage = () => {
-        onSendMessageClick();
+        props.onSendMessageClick();
     }
 
     let onUpdateNewMessage = () => {
         let text = newPostElement.current.value;
-        onAddMessage(text)
+        props.onAddMessage(text)
     }
 
-    if (!isAuth) return <Redirect to={'/login'} />
+    if (!props.isAuth) return <Redirect to={'/login'} />
 
     return (
         <>
@@ -39,7 +39,7 @@ export default function Dialogs({state, onSendMessageClick, onAddMessage, isAuth
             </div>
             <div>
                 <h4>Message</h4>
-                <textarea onChange={onUpdateNewMessage} ref={newPostElement} value={state.messagePage.newMessageText} />
+                <textarea onChange={onUpdateNewMessage} ref={newPostElement} value={props.state.messagePage.newMessageText} />
                 <div>
                     <button onClick={AddMessage}>add message</button>
                 </div>
