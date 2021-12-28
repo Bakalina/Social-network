@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Users from "./Users";
 import {connect} from "react-redux";
 import {
@@ -13,32 +13,28 @@ import {withAuthRedirectComponent} from "../../hoc/withAuthRedirectComponent";
 import {compose} from "redux";
 
 
-class UsersAPI extends React.Component {
+const UsersAPI = (props) => {
 
-    componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+    useEffect(() => {
+        props.getUsers(props.currentPage, props.pageSize);
+    },[])
+
+    const onPageChanged = (pageNumber) => {
+         props.getUsers(pageNumber, props.pageSize);
     }
-
-     onPageChanged = (pageNumber) => {
-         this.props.getUsers(pageNumber, this.props.pageSize);
-    }
-
-    render() {
         return <>
-            { this.props.isFetching ? <Preloader /> : null }
+            { props.isFetching ? <Preloader /> : null }
             <Users
-                users={this.props.users}
-                unFollow={this.props.unFollow}
-                follow={this.props.follow}
-                totalUsersCount={this.props.totalUsersCount}
-                pageSize={this.props.pageSize}
-                onPageChange={this.onPageChanged}
-                currentPage={this.props.currentPage}
-                followingInProgress={this.props.followingInProgress}
+                users={props.users}
+                unFollow={props.unFollow}
+                follow={props.follow}
+                totalUsersCount={props.totalUsersCount}
+                pageSize={props.pageSize}
+                onPageChange={onPageChanged}
+                currentPage={props.currentPage}
+                followingInProgress={props.followingInProgress}
             />
         </>
-
-    }
 }
 
 let mapStateToProps = (state) => {

@@ -12,7 +12,7 @@ const ProfileUser = (props) => {
         <div className={style.container}>
             <div>
                 <img src={props.profile.photos.large}/>
-                <ProfileInfoStatus status={'Hello my friend!'}/>
+                <ProfileInfoStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
             <div>
                 <h3>{`Name -- ${props.profile.fullName}`}</h3>
