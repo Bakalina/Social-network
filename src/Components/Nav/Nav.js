@@ -15,7 +15,7 @@ export default function Nav() {
                 <li><NavLink activeClassName={style.active} to='/settings'>Settings</NavLink></li>
                 <li><NavLink activeClassName={style.active} to='/users'>Users</NavLink></li>
             </ul>
-            {/*<Friends />*/}
+            <Friends />
         </div>
 
     )

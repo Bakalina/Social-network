@@ -1,5 +1,3 @@
-
-
 let initialState = {
     friends: [
         {id: 1, name: 'Bob', avatar: 'https://i.pinimg.com/736x/c2/74/aa/c274aa153d376a2365b66af27521d203.jpg'},
