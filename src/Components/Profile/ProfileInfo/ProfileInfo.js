@@ -7,7 +7,7 @@ const ProfileInfoForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field name={'newMessage'} component={'textarea'} placeholder={props.newPostText} />
+                <Field name={'newMessage'} component={'textarea'} placeholder={'New Post'} />
             </div>
             <div>
                 <button>Add post</button>
@@ -16,19 +16,18 @@ const ProfileInfoForm = (props) => {
     )
 }
 
-const ProfileInfoReduxForm = reduxForm({form: 'login'})(ProfileInfoForm)
+const ProfileInfoReduxForm = reduxForm({form: 'newMessage'})(ProfileInfoForm)
 
 export default function ProfileInfo(props) {
 
     const onSubmit = (formData) => {
-        props.onPostChange(formData.newMessage)
-        props.onAddPost()
+        props.onAddPost(formData.newMessage)
     }
 
     return (
             <div className={style.descriptionBlock}>
                 <h3>My post</h3>
-                <ProfileInfoReduxForm onSubmit={onSubmit} newPostText={props.newPostText}/>
+                <ProfileInfoReduxForm onSubmit={onSubmit}/>
             </div>
     )
 }

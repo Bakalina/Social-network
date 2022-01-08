@@ -12,7 +12,7 @@ const AddMessageForm = (props) => {
             <h4>Message</h4>
             <Form onSubmit={props.handleSubmit}>
                 <div>
-                    <Field name={'addMessage'} component={'textarea'} placeholder={props.newMessageText} />
+                    <Field name={'addMessage'} component={'textarea'} placeholder={'New Message'} />
                 </div>
                 <div>
                     <button>Add message</button>
@@ -22,7 +22,7 @@ const AddMessageForm = (props) => {
     )
 }
 
-const AddMessageReduxForm = reduxForm({form: 'login'})(AddMessageForm)
+const AddMessageReduxForm = reduxForm({form: 'addMessage'})(AddMessageForm)
 
 export default function Dialogs(props) {
 
@@ -36,8 +36,7 @@ export default function Dialogs(props) {
     if (!props.isAuth) return <Redirect to={'/login'} />
 
     const onSubmit = (formData) => {
-        props.onAddMessage(formData.addMessage)
-        props.onSendMessageClick();
+        props.onSendMessageClick(formData.addMessage);
     }
 
     return (
@@ -50,7 +49,7 @@ export default function Dialogs(props) {
                     {messageElement}
                 </div>
             </div>
-            <AddMessageReduxForm onSubmit={onSubmit} newMessageText={props.state.messagePage.newMessageText}/>
+            <AddMessageReduxForm onSubmit={onSubmit}/>
         </>
 
     )
