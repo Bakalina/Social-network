@@ -1,33 +1,34 @@
 import React from "react";
 import style from './ProfileInfo.module.css'
+import {Field, reduxForm} from "redux-form";
 
+
+const ProfileInfoForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field name={'newMessage'} component={'textarea'} placeholder={props.newPostText} />
+            </div>
+            <div>
+                <button>Add post</button>
+            </div>
+        </form>
+    )
+}
+
+const ProfileInfoReduxForm = reduxForm({form: 'login'})(ProfileInfoForm)
 
 export default function ProfileInfo(props) {
 
-
-    let newPostElement = React.createRef()
-
-    let AddPost = () => {
-        props.onAddPost();
-    }
-
-    let PostChange = () => {
-        let text = newPostElement.current.value;
-        props.onPostChange(text)
+    const onSubmit = (formData) => {
+        props.onPostChange(formData.newMessage)
+        props.onAddPost()
     }
 
     return (
-        <div>
-
             <div className={style.descriptionBlock}>
                 <h3>My post</h3>
-                <div>
-                    <textarea onChange={PostChange} ref={newPostElement} value={props.newPostText}/>
-                </div>
-                <div>
-                    <button onClick={AddPost}>Add post</button>
-                </div>
+                <ProfileInfoReduxForm onSubmit={onSubmit} newPostText={props.newPostText}/>
             </div>
-        </div>
     )
 }

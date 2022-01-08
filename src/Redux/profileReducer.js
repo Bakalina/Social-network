@@ -16,7 +16,6 @@ let initialState = {
     profile: null,
     status: ''
 }
-
 const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
