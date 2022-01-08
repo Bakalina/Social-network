@@ -3,7 +3,26 @@ import style from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItems from "./Message/Message";
 import {Redirect} from "react-router-dom";
+import {Field, Form, reduxForm} from "redux-form";
 
+
+const AddMessageForm = (props) => {
+    return (
+        <div>
+            <h4>Message</h4>
+            <Form onSubmit={props.handleSubmit}>
+                <div>
+                    <Field name={'addMessage'} component={'textarea'} placeholder={props.newMessageText} />
+                </div>
+                <div>
+                    <button>Add message</button>
+                </div>
+            </Form>
+        </div>
+    )
+}
+
+const AddMessageReduxForm = reduxForm({form: 'login'})(AddMessageForm)
 
 export default function Dialogs(props) {
 
@@ -14,18 +33,12 @@ export default function Dialogs(props) {
         .map((el) => (<MessageItems key={el.id} message={el.message} id={el.id}/>))
 
 
-    let newPostElement = React.createRef()
+    if (!props.isAuth) return <Redirect to={'/login'} />
 
-    let AddMessage = () => {
+    const onSubmit = (formData) => {
+        props.onAddMessage(formData.addMessage)
         props.onSendMessageClick();
     }
-
-    let onUpdateNewMessage = () => {
-        let text = newPostElement.current.value;
-        props.onAddMessage(text)
-    }
-
-    if (!props.isAuth) return <Redirect to={'/login'} />
 
     return (
         <>
@@ -37,13 +50,7 @@ export default function Dialogs(props) {
                     {messageElement}
                 </div>
             </div>
-            <div>
-                <h4>Message</h4>
-                <textarea onChange={onUpdateNewMessage} ref={newPostElement} value={props.state.messagePage.newMessageText} />
-                <div>
-                    <button onClick={AddMessage}>add message</button>
-                </div>
-            </div>
+            <AddMessageReduxForm onSubmit={onSubmit} newMessageText={props.state.messagePage.newMessageText}/>
         </>
 
     )
