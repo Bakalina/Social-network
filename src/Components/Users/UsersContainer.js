@@ -8,7 +8,7 @@ import {
     toggleIsFollowingProgress,
     getUsers
 } from "../../Redux/usersReducer";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../common/Preloader/Preloader";
 import {withAuthRedirectComponent} from "../../hoc/withAuthRedirectComponent";
 import {compose} from "redux";
 
