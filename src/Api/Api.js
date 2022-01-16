@@ -20,7 +20,13 @@ export const usersApi = {
 export const authApi = {
     getAuth(){
         return instance.get('auth/me')
-            .then(response =>  response.data)
+            .then(response =>  response.data);
+    },
+    login(email, password, rememberMe = false){
+        return instance.post('auth/login', {email, password, rememberMe});
+    },
+    logout(){
+        return instance.delete('auth/login');
     }
 }
 
@@ -44,12 +50,5 @@ export const profileApi = {
     },
     updateStatus(status) {
         return instance.put(`profile/status`, {status: status})
-    }
-}
-
-export const loginApi = {
-    getLogin(login){
-        return instance.post('auth/login', {login})
-            .then(response => response.data)
     }
 }
