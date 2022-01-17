@@ -1,20 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Header from "./Header";
 import {connect} from "react-redux";
 import {getAuthUser, logout} from "../../Redux/authReducer";
 
 
-class HeaderContainer extends React.Component {
+const HeaderContainer = (props) => {
 
-    componentDidMount() {
-        this.props.getAuthUser();
-    }
+    useEffect(()=>{
+        props.getAuthUser()
+    },[])
 
-    render() {
         return (
-            <Header {...this.props}/>
+            <Header {...props}/>
         )
-    }
+
 }
 
 const mapStateToProps = (state) => ({

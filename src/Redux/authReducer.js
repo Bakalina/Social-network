@@ -30,9 +30,10 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({
 
 export const getAuthUser = () => {
     return (dispatch) => {
-        authApi.getAuth().then(data => {
-            if (data.resultCode === 0) {
-                let {id, login, email} = data.data;
+        authApi.getAuth().then(response => {
+            console.log(response)
+            if (response.resultCode === 0) {
+                let {id, login, email} = response.data;
                 dispatch(setAuthUserData(id, email, login, true))
             }
         })    
@@ -41,8 +42,8 @@ export const getAuthUser = () => {
 
 export const login = (email, password, rememberMe) => {
     return (dispatch) => {
-        authApi.login(email, password, rememberMe).then(data => {
-            if (data.resultCode === 0) {
+        authApi.login(email, password, rememberMe).then(response => {
+            if (response.data.resultCode === 0) {
                 dispatch(getAuthUser())
             }
         })
@@ -51,9 +52,9 @@ export const login = (email, password, rememberMe) => {
 
 export const logout = () => {
     return (dispatch) => {
-        authApi.logout().then(data => {
-            if (data.resultCode === 0) {
-                dispatch(getAuthUser(null, null, null, false))
+        authApi.logout().then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setAuthUserData(null, null, null, false))
             }
         })
     }
