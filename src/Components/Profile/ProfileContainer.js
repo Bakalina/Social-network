@@ -12,7 +12,7 @@ const ProfileContainer = (props) => {
     useEffect(()=> {
         let userId = props.match.params.userId
         if (!userId) {
-            userId = 21127
+            userId = props.authorizedUserId
         }
         props.getUserProfile(userId);
         props.getUserStatus(userId)
@@ -21,7 +21,8 @@ const ProfileContainer = (props) => {
 
 
         return (
-            <Profile {...props} profile={props.profile}
+            <Profile {...props}
+                     profile={props.profile}
                      status={props.status}
                      updateStatus={props.updateStatus}
             />
@@ -31,7 +32,9 @@ const ProfileContainer = (props) => {
 
 let mapStateToProps = (state) => ({
     profile: state.mainPage.profile,
-    status: state.mainPage.status
+    status: state.mainPage.status,
+    authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
 })
 
 export default compose(
