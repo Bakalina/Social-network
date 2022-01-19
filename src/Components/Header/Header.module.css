@@ -1,7 +1,8 @@
 .head {
-    background: #ecfd40;
+    background: #4d6da9;
     height: 40px;
     grid-area: head;
+    border-radius: 1em;
 }
 
 .head img {
@@ -11,4 +12,17 @@
 
 .loginBlock {
     float: right;
+    margin: 0.5em;
+    color: white;
+}
+
+.button {
+    border: 0;
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+.login {
+    color: white;
+    text-decoration: none;
 }

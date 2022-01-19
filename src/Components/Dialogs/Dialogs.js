@@ -47,7 +47,7 @@ export default function Dialogs(props) {
     }
 
     return (
-        <>
+        <div className={style.container}>
             <div className={style.dialogs}>
                 <div className={style.dialogsItems}>
                     {dialogsElement}
@@ -57,7 +57,7 @@ export default function Dialogs(props) {
                 </div>
             </div>
             <AddMessageReduxForm onSubmit={onSubmit}/>
-        </>
+        </div>
 
     )
 }

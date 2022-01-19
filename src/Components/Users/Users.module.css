@@ -1,6 +1,8 @@
 .users {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    background: white;
+    border-radius: 1em;
 }
 
 .card {
@@ -9,6 +11,7 @@
     margin: 10px;
     padding: 5px;
     border: 2px solid black;
+    border-radius: 0.5em;
 }
 
 .selectedPage {

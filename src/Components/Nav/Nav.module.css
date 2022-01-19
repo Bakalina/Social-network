@@ -1,9 +1,9 @@
 .page {
     margin: 0;
-    background: #0505f3;
+    background: white;
     padding: 15px;
     grid-area: nav;
-    color: white;
+    border-radius: 1em;
 }
 
 .ul {
@@ -14,13 +14,8 @@
 .ul a{
     display: block;
     text-decoration: none;
-    color: #ffffff;
 }
 
-.ul a:hover {
-    color: #f80707;
-}
-
-.ul a.active {
-    color: #3eeac9;
+.ul a:hover, a.active {
+    color: #005aff;
 }
