@@ -1,14 +1,13 @@
-.formControl {
-
-}
 
 .formControl.error input,
 .formControl.error textarea {
     border: 2px solid red;
+
 }
 
 .formControl.error span {
     color: red;
+    margin-bottom: 5px;
 }
 
 .formSummaryError {
@@ -16,4 +15,22 @@
     margin: 10px;
     padding: 2px;
     width: max-content;
+}
+
+input, textarea {
+    border: 1px solid #bdbdbd;
+    margin-bottom: 5px;
+}
+
+input:focus , textarea:focus {
+    border-color: #bdbdbd;
+    outline: 0;
+}
+
+.checkbox {
+    display: flex;
+}
+
+button {
+    cursor: pointer;
 }

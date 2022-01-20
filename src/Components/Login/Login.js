@@ -23,7 +23,7 @@ const LoginForm = (props) => {
                        validate={[required]}
                        type={'password'}/>
             </div>
-            <div>
+            <div className={style.checkbox}>
                 <Field name={'rememberMe'}
                        component={Input}
                        type={'checkbox'}/>

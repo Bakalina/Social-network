@@ -8,10 +8,13 @@ const ProfileUser = (props) => {
         return <Preloader/>
     }
 
+    let noImage =  'https://prikolnye-kartinki.ru/img/picture/Sep/23/9d857169c84422fdaa28df62667a1467/3.jpg'
     return (
         <div className={style.container}>
             <div>
-                <img src={props.profile.photos.large}/>
+                <img className={style.userImage} src={props.profile.photos.large != null
+                    ? props.profile.photos.large
+                    : noImage }/>
                 <ProfileInfoStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
             <div>

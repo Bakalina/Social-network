@@ -2,3 +2,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+
+.userImage {
+    max-height: 15em;
+    margin: 1em;
+}
+
+.status {
+    margin-left: 1em;
+}
