@@ -13,5 +13,5 @@ export default function Header(props){
                     : <NavLink className={style.login} to={'/login'}>Login</NavLink>}
             </div>
         </div>
-    )
+    );
 }

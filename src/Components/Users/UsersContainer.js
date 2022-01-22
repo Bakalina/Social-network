@@ -17,27 +17,27 @@ const UsersAPI = (props) => {
 
     useEffect(() => {
         props.getUsers(props.currentPage, props.pageSize);
-    },[])
+    },[]);
 
     const onPageChanged = (pageNumber) => {
-         props.getUsers(pageNumber, props.pageSize);
-    }
-        return <>
-            { props.isFetching ? <Preloader /> : null }
-            <Users
-                users={props.users}
-                unFollow={props.unFollow}
-                follow={props.follow}
-                totalUsersCount={props.totalUsersCount}
-                pageSize={props.pageSize}
-                onPageChange={onPageChanged}
-                currentPage={props.currentPage}
-                followingInProgress={props.followingInProgress}
-            />
-        </>
-}
+        props.getUsers(pageNumber, props.pageSize);
+    };
+    return <>
+        { props.isFetching ? <Preloader /> : null }
+        <Users
+            users={props.users}
+            unFollow={props.unFollow}
+            follow={props.follow}
+            totalUsersCount={props.totalUsersCount}
+            pageSize={props.pageSize}
+            onPageChange={onPageChanged}
+            currentPage={props.currentPage}
+            followingInProgress={props.followingInProgress}
+        />
+    </>;
+};
 
-let mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -45,9 +45,8 @@ let mapStateToProps = (state) => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress
-    }
-}
-
+    };
+};
 
 
 export default compose(
@@ -59,4 +58,4 @@ export default compose(
         toggleIsFollowingProgress,
         getUsers
     })
-)(UsersAPI)
+)(UsersAPI);

@@ -2,7 +2,7 @@ import profileReducer from "./profileReducer";
 import dialogsReducer from "./dialogsReducer";
 import sideBarReducer from "./sideBarReducer";
 
-let storeStudy = {
+const storeStudy = {
     _state: {
         mainPage: {
             postData: [
@@ -44,10 +44,10 @@ let storeStudy = {
         sideBar: {}
     },
     _rerenderTree() {
-        console.log('state')
+        console.log('state');
     },
     getState() {
-        return this._state
+        return this._state;
     },
     subscribe(observer) {
         this.rerenderTree = observer;
@@ -60,6 +60,6 @@ let storeStudy = {
 
         this.rerenderTree(this._state);
     }
-}
+};
 
 export default storeStudy;

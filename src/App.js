@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "./Components/Nav/Nav";
-import style from "./App.module.css"
+import style from "./App.module.css";
 import {BrowserRouter, Route} from "react-router-dom";
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
@@ -30,6 +30,6 @@ export default function App() {
             </div>
 
         </BrowserRouter>
-    )
+    );
 
 };

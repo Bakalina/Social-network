@@ -8,7 +8,7 @@ import {Textarea} from "../common/FormsControls/FormsControls";
 import {maxLengthCreator, required} from "../utils/validators/validators";
 
 
-let maxLength10 =  maxLengthCreator(20)
+const maxLength10 = maxLengthCreator(20);
 
 const AddMessageForm = (props) => {
     return (
@@ -17,34 +17,34 @@ const AddMessageForm = (props) => {
             <Form onSubmit={props.handleSubmit}>
                 <div>
                     <Field name={'addMessage'}
-                           component={Textarea}
-                           placeholder={'New Message'}
-                           validate={[required, maxLength10]} />
+                        component={Textarea}
+                        placeholder={'New Message'}
+                        validate={[required, maxLength10]} />
                 </div>
                 <div>
                     <button>Add message</button>
                 </div>
             </Form>
         </div>
-    )
-}
+    );
+};
 
-const AddMessageReduxForm = reduxForm({form: 'addMessage'})(AddMessageForm)
+const AddMessageReduxForm = reduxForm({form: 'addMessage'})(AddMessageForm);
 
 export default function Dialogs(props) {
 
-    let dialogsElement = props.state.messagePage.dialogsData
-        .map((el) => (<DialogItem key={el.id} name={el.name} id={el.id}/>))
+    const dialogsElement = props.state.messagePage.dialogsData
+        .map((el) => (<DialogItem key={el.id} name={el.name} id={el.id}/>));
 
-    let messageElement = props.state.messagePage.messageData
-        .map((el) => (<MessageItems key={el.id} message={el.message} id={el.id}/>))
+    const messageElement = props.state.messagePage.messageData
+        .map((el) => (<MessageItems key={el.id} message={el.message} id={el.id}/>));
 
 
-    if (!props.isAuth) return <Redirect to={'/login'} />
+    if (!props.isAuth) return <Redirect to={'/login'} />;
 
     const onSubmit = (formData) => {
         props.onSendMessageClick(formData.addMessage);
-    }
+    };
 
     return (
         <div className={style.container}>
@@ -59,5 +59,5 @@ export default function Dialogs(props) {
             <AddMessageReduxForm onSubmit={onSubmit}/>
         </div>
 
-    )
+    );
 }

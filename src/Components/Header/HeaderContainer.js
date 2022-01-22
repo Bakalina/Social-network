@@ -7,18 +7,18 @@ import {getAuthUser, logout} from "../../Redux/authReducer";
 const HeaderContainer = (props) => {
 
     useEffect(()=>{
-        props.getAuthUser()
-    },[])
+        props.getAuthUser();
+    },[]);
 
-        return (
-            <Header {...props}/>
-        )
+    return (
+        <Header {...props}/>
+    );
 
-}
+};
 
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login
-})
+});
 
 export default connect(mapStateToProps, {getAuthUser, logout})(HeaderContainer);

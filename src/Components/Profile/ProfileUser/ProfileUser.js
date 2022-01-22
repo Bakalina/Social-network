@@ -5,14 +5,14 @@ import ProfileInfoStatus from "./ProfileInfoStatus";
 
 const ProfileUser = (props) => {
     if (!props.profile) {
-        return <Preloader/>
+        return <Preloader/>;
     }
 
-    let noImage =  'https://prikolnye-kartinki.ru/img/picture/Sep/23/9d857169c84422fdaa28df62667a1467/3.jpg'
+    const noImage = 'https://prikolnye-kartinki.ru/img/picture/Sep/23/9d857169c84422fdaa28df62667a1467/3.jpg';
     return (
         <div className={style.container}>
             <div>
-                <img className={style.userImage} src={props.profile.photos.large != null
+                <img alt='image' className={style.userImage} src={props.profile.photos.large != null
                     ? props.profile.photos.large
                     : noImage }/>
                 <ProfileInfoStatus status={props.status} updateStatus={props.updateStatus}/>
@@ -24,7 +24,7 @@ const ProfileUser = (props) => {
             </div>
         </div>
 
-    )
-}
+    );
+};
 
 export default ProfileUser;

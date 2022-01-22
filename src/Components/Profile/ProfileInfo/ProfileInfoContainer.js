@@ -7,16 +7,16 @@ import {connect} from "react-redux";
 const mapStateToProps = (state) => {
     return {
         newPostText: state.mainPage.newPostText
-    }
-}
+    };
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
         onAddPost: (newPostText) => {
-            dispatch(addPostActionCreator(newPostText))
+            dispatch(addPostActionCreator(newPostText));
         }
-    }
-}
+    };
+};
 
 
 const ProfileInfoContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileInfo);

@@ -1,9 +1,8 @@
 import React from "react";
 
 
-
-export default function MyFriends(props) {
+export default function MyFriends() {
     return (
         <div>My friends</div>
-    )
+    );
 }

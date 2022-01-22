@@ -9,10 +9,7 @@ export default function DialogItem(props) {
         <div className={style.dialog}>
             <NavLink to={'/dialogs/' + props.id}>{props.name}</NavLink>
         </div>
-    )
+    );
 }
-
-
-
 
 

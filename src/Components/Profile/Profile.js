@@ -1,5 +1,5 @@
 import React from "react";
-import style from './Profile.module.css'
+import style from './Profile.module.css';
 import ProfileInfoContainer from "./ProfileInfo/ProfileInfoContainer";
 import MyPostContainer from "./My Post/MyPost";
 import ProfileUser from "./ProfileUser/ProfileUser";
@@ -13,5 +13,5 @@ export default function Profile(props) {
             <ProfileInfoContainer />
             <MyPostContainer />
         </div>
-    )
+    );
 }

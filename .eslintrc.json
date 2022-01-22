@@ -15,6 +15,14 @@
         "react"
     ],
     "rules": {
-        "react/prop-types": 0
+        "react/prop-types": 0,
+        "space-in-parens": "error",
+        "semi": "error",
+        "indent": "error",
+        "no-multi-spaces": "error",
+        "no-multiple-empty-lines": "error",
+        "prefer-const": "error",
+        "no-use-before-define": "error",
+        "no-var": "error"
     }
 }
