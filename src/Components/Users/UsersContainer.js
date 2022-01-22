@@ -9,7 +9,6 @@ import {
     getUsers
 } from "../../Redux/usersReducer";
 import Preloader from "../common/Preloader/Preloader";
-import {withAuthRedirectComponent} from "../../hoc/withAuthRedirectComponent";
 import {compose} from "redux";
 
 
@@ -50,7 +49,6 @@ const mapStateToProps = (state) => {
 
 
 export default compose(
-    withAuthRedirectComponent,
     connect(mapStateToProps, {
         follow,
         unFollow,
