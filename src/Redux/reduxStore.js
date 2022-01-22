@@ -15,7 +15,7 @@ import { reducer as formReducer } from 'redux-form'
      nav: navReducers,
      usersPage: usersReducer,
      auth: authReducer,
-     form: formReducer
+     form: formReducer,
  })
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware))

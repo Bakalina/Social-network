@@ -38,6 +38,9 @@ export const followApi = {
     getUnFollow(id){
         return instance.delete(`follow/${id}`)
             .then(response => response.data)
+    },
+    getStatusFollow(id){
+        return instance.get(`follow/${id}`)
     }
 }
 

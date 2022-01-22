@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./Nav.module.css";
 import {NavLink} from "react-router-dom";
-import Friends from "./Friends/Friends";
 
 
 export default function Nav() {
@@ -12,10 +11,10 @@ export default function Nav() {
                 <li><NavLink activeClassName={style.active} to='/dialogs'>Messages</NavLink></li>
                 <li><NavLink activeClassName={style.active} to='/news'>News</NavLink></li>
                 <li><NavLink activeClassName={style.active} to='/music'>Music</NavLink></li>
-                <li><NavLink activeClassName={style.active} to='/settings'>Settings</NavLink></li>
+                <li><NavLink activeClassName={style.active} to='/friends'>My friends</NavLink></li>
                 <li><NavLink activeClassName={style.active} to='/users'>Users</NavLink></li>
             </ul>
-            <Friends />
+            {/*<Friends />*/}
         </div>
 
     )
