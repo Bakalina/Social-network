@@ -6,20 +6,27 @@ import {
     setCurrentPage,
     unFollow,
     toggleIsFollowingProgress,
-    getUsers
+    requestUsers
 } from "../../Redux/usersReducer";
 import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount, getUsers
+} from "../../Redux/usersSelectors";
 
 
 const UsersAPI = (props) => {
 
     useEffect(() => {
-        props.getUsers(props.currentPage, props.pageSize);
+        props.requestUsers(props.currentPage, props.pageSize);
     },[]);
 
     const onPageChanged = (pageNumber) => {
-        props.getUsers(pageNumber, props.pageSize);
+        props.requestUsers(pageNumber, props.pageSize);
     };
     return <>
         { props.isFetching ? <Preloader /> : null }
@@ -38,15 +45,14 @@ const UsersAPI = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     };
 };
-
 
 export default compose(
     connect(mapStateToProps, {
@@ -54,6 +60,6 @@ export default compose(
         unFollow,
         setCurrentPage,
         toggleIsFollowingProgress,
-        getUsers
+        requestUsers
     })
 )(UsersAPI);
