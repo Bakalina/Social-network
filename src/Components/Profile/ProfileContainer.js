@@ -5,6 +5,7 @@ import {getUserProfile, getUserStatus, updateStatus} from "../../Redux/profileRe
 import {withRouter} from "react-router-dom";
 import {withAuthRedirectComponent} from "../../hoc/withAuthRedirectComponent";
 import {compose} from "redux";
+import {getIsAuth, getProfile, getStatus, getUserId} from "../../Redux/profileSelectors";
 
 
 const ProfileContainer = (props) => {
@@ -30,10 +31,10 @@ const ProfileContainer = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-    profile: state.mainPage.profile,
-    status: state.mainPage.status,
-    authorizedUserId: state.auth.userId,
-    isAuth: state.auth.isAuth
+    profile: getProfile(state),
+    status: getStatus(state),
+    authorizedUserId: getUserId(state),
+    isAuth: getIsAuth(state)
 });
 
 export default compose(
