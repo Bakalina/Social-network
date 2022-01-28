@@ -5,6 +5,10 @@ import {Provider} from "react-redux";
 import store from "./Redux/reduxStore";
 import {BrowserRouter} from "react-router-dom";
 
+setInterval(()=>{
+    console.log('x');
+    store.dispatch({type: "FAKE"});
+}, 1000);
 
 ReactDOM.render(
     <React.StrictMode>

@@ -44,6 +44,7 @@ const UsersAPI = (props) => {
 };
 
 const mapStateToProps = (state) => {
+    console.log('render');
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
