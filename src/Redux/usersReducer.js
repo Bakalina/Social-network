@@ -16,13 +16,11 @@ const initialState = {
     currentPage: 1,
     isFetching: false,
     followingInProgress: false,
-    fake: 10
 };
 
 const usersReducer = (state = initialState, action) => {
 
     switch (action.type) {
-    case "FAKE": return {...state, fake: state.fake + 1 };
     case FOLLOW:
         return { ...state, users: state.users.map(el => {
             if (el.id === action.userId){

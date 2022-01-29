@@ -6,6 +6,7 @@ import {login} from "../../Redux/authReducer";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import style from "./../common/FormsControls/FormsControls.module.css";
+import {getIsAuth} from "../../Redux/authSelectors";
 
 const LoginForm = (props) => {
     return (
@@ -60,7 +61,7 @@ const Login = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: getIsAuth(state)
 });
 
 export default connect(mapStateToProps, {login}) (Login);

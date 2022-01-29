@@ -1,17 +1,33 @@
+import {createSelector} from "reselect";
 
-
-export const getProfile = state => {
+const getProfileSelector = state => {
     return state.mainPage.profile;
 };
 
-export const getStatus = state => {
+export const getProfile = createSelector(getProfileSelector, (profile) => {
+    return profile;
+});
+
+const getStatusSelector = state => {
     return state.mainPage.status;
 };
 
-export const getUserId = state => {
-    return state.auth.userId;
+export const getStatus = createSelector(getStatusSelector, (status) => {
+    return status;
+});
+
+const getPostDataSelector = state => {
+    return state.mainPage.postData;
 };
 
-export const getIsAuth = state => {
-    return state.auth.isAuth;
+export const getPostData = createSelector(getPostDataSelector, (postData) => {
+    return postData;
+});
+
+const getNewPostTextSelector = state => {
+    return state.mainPage.newPostText;
 };
+
+export const getNewPostText = createSelector(getNewPostTextSelector, (newPostText) => {
+    return newPostText;
+});

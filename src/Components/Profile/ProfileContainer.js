@@ -5,7 +5,8 @@ import {getUserProfile, getUserStatus, updateStatus} from "../../Redux/profileRe
 import {withRouter} from "react-router-dom";
 import {withAuthRedirectComponent} from "../../hoc/withAuthRedirectComponent";
 import {compose} from "redux";
-import {getIsAuth, getProfile, getStatus, getUserId} from "../../Redux/profileSelectors";
+import {getProfile, getStatus} from "../../Redux/profileSelectors";
+import {getIsAuth, getUserId} from "../../Redux/authSelectors";
 
 
 const ProfileContainer = (props) => {

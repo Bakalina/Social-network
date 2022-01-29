@@ -11,7 +11,6 @@ const Users = (props) => {
     const handlePageClick = ({selected}) => {
         props.onPageChange(selected+1);
     };
-    console.log('compon');
     return <>
         <div className={style.users}>
             {props.users.map(el =>

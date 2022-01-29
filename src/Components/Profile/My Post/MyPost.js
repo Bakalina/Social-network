@@ -2,11 +2,12 @@ import React from "react";
 import style from './MyPost.module.css';
 import Post from "./Post/Post";
 import {connect} from "react-redux";
+import {getPostData} from "../../../Redux/profileSelectors";
 
 
 const mapStateToProps = (state) => {
     return {
-        postData: state.mainPage.postData
+        postData: getPostData(state)
     };
 };
 
