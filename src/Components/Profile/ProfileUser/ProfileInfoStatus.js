@@ -2,23 +2,23 @@ import React, {useEffect, useState} from "react";
 import style from "./ProfileUser.module.css";
 
 const ProfileInfoStatus = (props) => {
-    const [editMode, useEditMode] = useState(true);
-    const [status, useStatus] = useState('');
+    const [editMode, setEditMode] = useState(true);
+    const [status, setStatus] = useState(props.status);
 
     useEffect(()=>{
-        useStatus(props.status);
+        setStatus(props.status);
     },[props.status]);
 
     const activateEditMode = () => {
-        useEditMode(false);
+        setEditMode(false);
     };
     const deActivateEditMode = () => {
-        useEditMode(true);
+        setEditMode(true);
         props.updateStatus(status);
     };
 
     const onStatusChange = (e) => {
-        useStatus(e.currentTarget.value);
+        setStatus(e.currentTarget.value);
     };
 
     return (
