@@ -15,7 +15,7 @@ const ProfileUser = (props) => {
                 <img alt='image' className={style.userImage} src={props.profile.photos.large != null
                     ? props.profile.photos.large
                     : noImage }/>
-                <ProfileInfoStatus status={props.status} updateStatus={props.updateStatus} userId={props.userId}/>
+                <ProfileInfoStatus status={props.status} updateStatus={props.updateStatus} authorizedUserId={props.authorizedUserId} profileId={props.profile.userId}/>
             </div>
             <div>
                 <h3>{`Name -- ${props.profile.fullName}`}</h3>

@@ -26,7 +26,7 @@ const ProfileContainer = (props) => {
             profile={props.profile}
             status={props.status}
             updateStatus={props.updateStatus}
-            userId={props.authorizedUserId}
+            authorizedUserId={props.authorizedUserId}
         />
     );
 

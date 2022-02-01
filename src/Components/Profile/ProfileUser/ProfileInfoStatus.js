@@ -12,6 +12,7 @@ const ProfileInfoStatus = (props) => {
     const activateEditMode = () => {
         setEditMode(false);
     };
+
     const deActivateEditMode = () => {
         setEditMode(true);
         props.updateStatus(status);
@@ -20,12 +21,13 @@ const ProfileInfoStatus = (props) => {
     const onStatusChange = (e) => {
         setStatus(e.currentTarget.value);
     };
-    console.log(props.userId);
+
     return (
         <div className={style.status}>
-            {props.userId === false?
+            {props.authorizedUserId === props.profileId?
                 editMode ? <span onDoubleClick={activateEditMode}>{props.status}</span>
-                    : <input onChange={onStatusChange} autoFocus={true} onBlur={deActivateEditMode} value={status} /> : props.status
+                    : <input onChange={onStatusChange} autoFocus={true} onBlur={deActivateEditMode} value={status} />
+                : props.status
             }
 
         </div>
