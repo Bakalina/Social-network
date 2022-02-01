@@ -11,7 +11,7 @@ import {getIsAuth, getUserId} from "../../Redux/authSelectors";
 
 const ProfileContainer = (props) => {
 
-    useEffect(()=> {
+    useEffect(() => {
         let userId = props.match.params.userId;
         if (!userId) {
             userId = props.authorizedUserId;
@@ -26,6 +26,7 @@ const ProfileContainer = (props) => {
             profile={props.profile}
             status={props.status}
             updateStatus={props.updateStatus}
+            userId={props.authorizedUserId}
         />
     );
 
@@ -35,7 +36,7 @@ const mapStateToProps = (state) => ({
     profile: getProfile(state),
     status: getStatus(state),
     authorizedUserId: getUserId(state),
-    isAuth: getIsAuth(state)
+    isAuth: getIsAuth(state),
 });
 
 export default compose(

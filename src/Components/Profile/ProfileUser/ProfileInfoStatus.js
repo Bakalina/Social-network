@@ -20,11 +20,14 @@ const ProfileInfoStatus = (props) => {
     const onStatusChange = (e) => {
         setStatus(e.currentTarget.value);
     };
-
+    console.log(props.userId);
     return (
         <div className={style.status}>
-            {editMode ? <span onDoubleClick={activateEditMode}>{props.status}</span>
-                : <input onChange={onStatusChange} autoFocus={true} onBlur={deActivateEditMode} value={status} />}
+            {props.userId === false?
+                editMode ? <span onDoubleClick={activateEditMode}>{props.status}</span>
+                    : <input onChange={onStatusChange} autoFocus={true} onBlur={deActivateEditMode} value={status} /> : props.status
+            }
+
         </div>
     );
 };
