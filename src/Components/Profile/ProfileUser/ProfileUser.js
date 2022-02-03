@@ -2,13 +2,13 @@ import React from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import style from "./ProfileUser.module.css";
 import ProfileInfoStatus from "./ProfileInfoStatus";
+import noImage from "./../../../image/no_image_user.jpg";
 
 const ProfileUser = (props) => {
     if (!props.profile) {
         return <Preloader/>;
     }
 
-    const noImage = 'https://prikolnye-kartinki.ru/img/picture/Sep/23/9d857169c84422fdaa28df62667a1467/3.jpg';
     return (
         <div className={style.container}>
             <div>

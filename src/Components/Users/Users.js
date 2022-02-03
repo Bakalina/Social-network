@@ -2,7 +2,7 @@ import React from "react";
 import style from './Users.module.css';
 import ReactPaginate from 'react-paginate';
 import {NavLink} from "react-router-dom";
-
+import noImage from "./../../image/no_image_user.jpg";
 
 const Users = (props) => {
 
@@ -11,6 +11,7 @@ const Users = (props) => {
     const handlePageClick = ({selected}) => {
         props.onPageChange(selected+1);
     };
+
     return <>
         <div className={style.users}>
             {props.users.map(el =>
@@ -21,7 +22,7 @@ const Users = (props) => {
                                 <img width='70px' alt='image'
                                     src={el.photos.small != null
                                         ? el.photos.small
-                                        : 'https://klike.net/uploads/posts/2019-03/1551511801_1.jpg'}/>
+                                        : noImage}/>
                             </NavLink>
                         </div>
                         <div>
@@ -36,13 +37,8 @@ const Users = (props) => {
                     </span>
                     <span>
                         <span>
-                            <div>{el.name}</div>
-                            <div>{el.status}</div>
-                            <div>{el.id}</div>
-                        </span>
-                        <span>
-                            <div>{'el.location.country'}</div>
-                            <div>{'el.location.city'}</div>
+                            <div>name: <b>{el.name}</b></div>
+                            <div>status: <b>{el.status}</b></div>
                         </span>
                     </span>
                 </div>)}
