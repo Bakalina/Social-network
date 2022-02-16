@@ -1,8 +1,8 @@
 import React from "react";
 import style from './Users.module.css';
-import ReactPaginate from 'react-paginate';
 import {NavLink} from "react-router-dom";
 import noImage from "./../../image/no_image_user.jpg";
+import Paginate from "../common/Pagination/Paginate";
 
 const Users = (props) => {
 
@@ -43,20 +43,7 @@ const Users = (props) => {
                     </span>
                 </div>)}
         </div>
-        <ReactPaginate
-            breakLabel="..."
-            nextLabel=">"
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={5}
-            pageCount={pageCount}
-            previousLabel="<"
-            renderOnZeroPageCount={null}
-            containerClassName={style.paginate}
-            pageClassName={style.paginateLi}
-            activeClassName={style.paginateLiActive}
-            previousClassName={style.paginateLiPrevious}
-            nextClassName={style.paginateLiNext}
-        />
+        <Paginate handlePageClick={handlePageClick} pageCount={pageCount} />
     </>;
 
 };

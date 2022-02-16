@@ -19,38 +19,3 @@
     margin: 0 8px;
 }
 
-.paginate {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    list-style-type: none;
-
-}
-
-.paginateLi {
-    margin: 0 3px;
-    cursor: pointer;
-}
-.paginateLi:hover {
-    font-weight: bold;
-}
-
-.paginateLiActive {
-    font-weight: bold;
-}
-
-.paginateLiPrevious {
-    cursor: pointer;
-}
-
-.paginateLiPrevious:hover {
-    font-weight: bold;
-}
-
-.paginateLiNext {
-    cursor: pointer;
-}
-
-.paginateLiNext:hover {
-    font-weight: bold;
-}
