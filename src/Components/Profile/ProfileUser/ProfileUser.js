@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import style from "./ProfileUser.module.css";
 import ProfileInfoStatus from "./ProfileInfoStatus";
@@ -9,13 +9,40 @@ const ProfileUser = (props) => {
         return <Preloader/>;
     }
 
+    const onMainPhotoSelected = (e) => {
+        if(e.target.files.length) {
+            props.savePhoto(e.target.files[0]);
+        }
+    };
+
+    const fileInput = useRef(null);
+
+    const addPhoto = () => {
+        if (props.isOwner) {
+            fileInput.current.click();
+        }
+    };
+
     return (
         <div className={style.container}>
             <div>
-                <img alt='image' className={style.userImage} src={props.profile.photos.large != null
-                    ? props.profile.photos.large
-                    : noImage }/>
-                <ProfileInfoStatus status={props.status} updateStatus={props.updateStatus} authorizedUserId={props.authorizedUserId} profileId={props.profile.userId}/>
+                <div className={props.isOwner && style.addPhoto}>
+                    <img
+                        onClick={addPhoto}
+                        alt='image'
+                        className={style.userImage}
+                        src={props.profile.photos.large != null ? props.profile.photos.large : noImage } />
+                    {props.isOwner && <input
+                        type="file"
+                        onChange={onMainPhotoSelected}
+                        ref={fileInput}
+                        style={{display: 'none'}}/>}
+                </div>
+                <ProfileInfoStatus
+                    status={props.status}
+                    updateStatus={props.updateStatus}
+                    authorizedUserId={props.authorizedUserId}
+                    profileId={props.profile.userId}/>
             </div>
             <div>
                 <h3>{`Name -- ${props.profile.fullName}`}</h3>
@@ -23,7 +50,6 @@ const ProfileUser = (props) => {
                 <p>{`My Facebook -- ${props.profile.contacts.facebook}`}</p>
             </div>
         </div>
-
     );
 };
 
