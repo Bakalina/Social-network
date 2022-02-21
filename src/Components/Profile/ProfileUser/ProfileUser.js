@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import style from "./ProfileUser.module.css";
 import ProfileInfoStatus from "./ProfileInfoStatus";
@@ -23,6 +23,8 @@ const ProfileUser = (props) => {
         }
     };
 
+    const [editMode, setEditMode] = useState(false);
+
     return (
         <div className={style.container}>
             <div>
@@ -44,13 +46,35 @@ const ProfileUser = (props) => {
                     authorizedUserId={props.authorizedUserId}
                     profileId={props.profile.userId}/>
             </div>
-            <div>
-                <h3>{`Name -- ${props.profile.fullName}`}</h3>
-                <p>{`About Me -- ${props.profile.aboutMe}`}</p>
-                <p>{`My Facebook -- ${props.profile.contacts.facebook}`}</p>
-            </div>
+            { editMode ?
+                <ProfileDataForm profile={props.profile} /> :
+                <ProfileData
+                    profile={props.profile}
+                    goToEditMode={()=>setEditMode(true)}
+                    isOwner={props.isOwner}/> }
         </div>
     );
+};
+
+const ProfileData = ({profile, isOwner, goToEditMode}) => {
+    return <div>
+        { isOwner && <button onClick={goToEditMode}>Edit</button> }
+        <h3>Name: {profile.fullName}</h3>
+        <p>About Me: {profile.aboutMe}</p>
+        <p>Looking for a job: {profile.lookingForAJob ? 'Yes' : 'No'} </p>
+        <p>My professional skills: {profile.lookingForAJobDescription} </p>
+        <p>Contacts: {Object.keys(profile.contacts).map(key => {
+            return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>;
+        })}</p>
+    </div>;
+};
+
+const ProfileDataForm = ({profile}) => {
+    return <div>Edit</div>;
+};
+
+const Contact = ({contactTitle, contactValue}) => {
+    return <p>{contactTitle}: {contactValue}</p>;
 };
 
 export default ProfileUser;
