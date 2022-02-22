@@ -14,7 +14,8 @@ export default function Profile(props) {
                 updateStatus={props.updateStatus}
                 authorizedUserId={props.authorizedUserId}
                 isOwner={props.isOwner}
-                savePhoto={props.savePhoto}/>
+                savePhoto={props.savePhoto}
+                saveProfile={props.saveProfile}/>
             <ProfileInfoContainer/>
             <MyPostContainer/>
         </div>
