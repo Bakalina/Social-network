@@ -18,7 +18,7 @@ const ProfileContainer = (props) => {
         }
         props.getUserProfile(userId);
         props.getUserStatus(userId);
-    });
+    },[]);
 
 
     return (

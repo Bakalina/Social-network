@@ -28,7 +28,7 @@ const ProfileUser = (props) => {
 
     const onSubmit = (formData) => {
         props.saveProfile(formData);
-        setEditMode(false);
+        // setEditMode(false);
     };
 
     return (
@@ -83,7 +83,9 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
         </div>
         <div>
             <p>Contacts: {Object.keys(profile.contacts).map(key => {
-                return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>;
+                if(profile.contacts[key] != null) {
+                    return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>;
+                }
             })}</p>
         </div>
     </div>;
