@@ -6,8 +6,6 @@ import noImage from "./../../../image/no_image_user.jpg";
 import ProfileDataForm from "./ProfileDataForm";
 
 const ProfileUser = (props) => {
-
-    console.log(props.editModule);
     if (!props.profile) {
         return <Preloader/>;
     }
