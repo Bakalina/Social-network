@@ -6,6 +6,7 @@ const SET_USER_PROFILE = 'profileReducer/SET_USER_PROFILE';
 const SET_STATUS = 'profileReducer/SET_STATUS';
 const DELETE_POST = 'profileReducer/DELETE_POST';
 const SAVE_PHOTO_SUCCESS = 'profileReducer/SAVE_PHOTO_SUCCESS';
+const EDIT_MODULE = 'profileReducer/EDIT_MODULE';
 
 const initialState = {
     postData: [
@@ -16,8 +17,10 @@ const initialState = {
     ],
     newPostText: 'React',
     profile: null,
-    status: ''
+    status: '',
+    editModule: false
 };
+
 const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
@@ -50,6 +53,11 @@ const profileReducer = (state = initialState, action) => {
             ...state,
             profile: {...state.profile, photos: action.photos}
         };
+    case EDIT_MODULE:
+        return {
+            ...state,
+            editModule: action.editModule
+        };
     default: return state;
     }
 };
@@ -59,7 +67,7 @@ export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status});
 export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const savePhotoSuccess = (photos) => ({type: SAVE_PHOTO_SUCCESS, photos});
-
+export const setEditModule = (editModule) => ({type: EDIT_MODULE, editModule});
 
 export const getUserProfile = (userId) => async (dispatch) => {
     const response = await profileApi.getProfile(userId);
@@ -90,6 +98,7 @@ export const saveProfile = (profile) => async (dispatch, getState) => {
     const response = await profileApi.saveProfile(profile);
     if (response.data.resultCode === 0) {
         dispatch(getUserProfile(userId));
+        dispatch(setEditModule(false));
     } else {
         dispatch(stopSubmit('editProfile', {_error: response.data.messages[0]}));
     }

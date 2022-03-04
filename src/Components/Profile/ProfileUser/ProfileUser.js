@@ -6,6 +6,8 @@ import noImage from "./../../../image/no_image_user.jpg";
 import ProfileDataForm from "./ProfileDataForm";
 
 const ProfileUser = (props) => {
+
+    console.log(props.editModule);
     if (!props.profile) {
         return <Preloader/>;
     }
@@ -24,11 +26,8 @@ const ProfileUser = (props) => {
         }
     };
 
-    const [editMode, setEditMode] = useState(false);
-
     const onSubmit = (formData) => {
         props.saveProfile(formData);
-        // setEditMode(false);
     };
 
     return (
@@ -52,13 +51,13 @@ const ProfileUser = (props) => {
                     authorizedUserId={props.authorizedUserId}
                     profileId={props.profile.userId}/>
             </div>
-            { editMode ?
+            { props.editModule ?
                 <ProfileDataForm
                     initialValues={props.profile}
                     onSubmit={onSubmit}/> :
                 <ProfileData
                     profile={props.profile}
-                    goToEditMode={()=>setEditMode(true)}
+                    goToEditMode={()=>props.setEditModule(true)}
                     isOwner={props.isOwner}/> }
         </div>
     );
@@ -83,7 +82,7 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
         </div>
         <div>
             <p>Contacts: {Object.keys(profile.contacts).map(key => {
-                if(profile.contacts[key] != null) {
+                if(profile.contacts[key] != null && profile.contacts[key] !== '') {
                     return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>;
                 }
             })}</p>

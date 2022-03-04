@@ -4,11 +4,12 @@ import ProfileInfoContainer from "./ProfileInfo/ProfileInfoContainer";
 import MyPostContainer from "./My Post/MyPost";
 import ProfileUser from "./ProfileUser/ProfileUser";
 
-
 export default function Profile(props) {
     return (
         <div className={style.main}>
             <ProfileUser
+                setEditModule={props.setEditModule}
+                editModule={props.editModule}
                 profile={props.profile}
                 status={props.status}
                 updateStatus={props.updateStatus}

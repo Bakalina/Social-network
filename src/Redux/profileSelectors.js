@@ -31,3 +31,11 @@ const getNewPostTextSelector = state => {
 export const getNewPostText = createSelector(getNewPostTextSelector, (newPostText) => {
     return newPostText;
 });
+
+const getEditModuleSelector = state => {
+    return state.mainPage.editModule;
+};
+
+export const getEditModule = createSelector(getEditModuleSelector, (editModule) => {
+    return editModule;
+});
