@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useRef} from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import style from "./ProfileUser.module.css";
 import ProfileInfoStatus from "./ProfileInfoStatus";
@@ -64,9 +64,6 @@ const ProfileUser = (props) => {
 const ProfileData = ({profile, isOwner, goToEditMode}) => {
     return <div>
         <div>
-            { isOwner && <button onClick={goToEditMode}>Edit</button> }
-        </div>
-        <div>
             <h3>Name: {profile.fullName}</h3>
         </div>
         <div>
@@ -85,12 +82,15 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
                 }
             })}</p>
         </div>
+        <div className={style.buttonEditMode}>
+            { isOwner && <button onClick={goToEditMode}>Edit</button> }
+        </div>
     </div>;
 };
 
 
 const Contact = ({contactTitle, contactValue}) => {
-    return <p>{contactTitle}: {contactValue}</p>;
+    return <p className={style.contacts}>{contactTitle}: {contactValue}</p>;
 };
 
 export default ProfileUser;

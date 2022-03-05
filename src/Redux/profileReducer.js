@@ -46,7 +46,7 @@ const profileReducer = (state = initialState, action) => {
     case DELETE_POST:
         return {
             ...state,
-            postData: state.postData.filter(el => el.id != action.postId)
+            postData: state.postData.filter(el => el.id !== action.postId)
         };
     case SAVE_PHOTO_SUCCESS:
         return {
@@ -65,7 +65,7 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostText});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status});
-export const deletePost = (postId) => ({type: DELETE_POST, postId});
+// export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const savePhotoSuccess = (photos) => ({type: SAVE_PHOTO_SUCCESS, photos});
 export const setEditModule = (editModule) => ({type: EDIT_MODULE, editModule});
 

@@ -6,9 +6,6 @@ import style from "../../common/FormsControls/FormsControls.module.css";
 
 const ProfileDataForm = ({handleSubmit, initialValues, error}) => {
     return <form onSubmit={handleSubmit}>
-        <div>
-            <button>save</button>
-        </div>
         {error && <div className={style.formSummaryError}>{error}</div>}
         <div>
             <p>Name:
@@ -32,6 +29,9 @@ const ProfileDataForm = ({handleSubmit, initialValues, error}) => {
                     <b>{key}: {createField(key, 'contacts.' + key, [], Input)}</b>
                 </div>;
             })}
+        </div>
+        <div className={style.buttonEditMode}>
+            <button>save</button>
         </div>
     </form>;
 };

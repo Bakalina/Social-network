@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect} from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
@@ -18,20 +18,15 @@ import {getIsAuth, getUserId} from "../../Redux/authSelectors";
 
 const ProfileContainer = (props) => {
 
-    const isInitialMount = useRef(true);
 
     useEffect(() => {
-        if (isInitialMount.current) {
-            isInitialMount.current = false;
-        } else {
-            let userId = props.match.params.userId;
-            if (!userId) {
-                userId = props.authorizedUserId;
-            }
-            props.getUserProfile(userId);
-            props.getUserStatus(userId);
+        let userId = props.match.params.userId;
+        if (!userId) {
+            userId = props.authorizedUserId;
         }
-    });
+        props.getUserProfile(userId);
+        props.getUserStatus(userId);
+    },[props.match.params.userId]);
 
 
     return (

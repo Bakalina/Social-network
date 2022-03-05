@@ -2,7 +2,6 @@
 .formControl.error input,
 .formControl.error textarea {
     border: 2px solid red;
-
 }
 
 .formControl.error span {
@@ -33,4 +32,8 @@ input:focus , textarea:focus {
 
 button {
     cursor: pointer;
+}
+
+.buttonEditMode {
+    margin-top: 20px;
 }
