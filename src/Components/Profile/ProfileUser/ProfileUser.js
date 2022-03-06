@@ -67,20 +67,20 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
             <h3>Name: {profile.fullName}</h3>
         </div>
         <div>
-            <p>About Me: {profile.aboutMe}</p>
+            <p><b>About Me:</b> {profile.aboutMe}</p>
         </div>
         <div>
-            <p>Looking for a job: {profile.lookingForAJob ? 'Yes' : 'No'} </p>
+            <p><b>Looking for a job:</b> {profile.lookingForAJob ? 'Yes' : 'No'} </p>
         </div>
         <div>
-            <p>My professional skills: {profile.lookingForAJobDescription} </p>
+            <p><b>My professional skills:</b> {profile.lookingForAJobDescription} </p>
         </div>
         <div>
-            <p>Contacts: {Object.keys(profile.contacts).map(key => {
+            <div><b>Contacts:</b> {Object.keys(profile.contacts).map(key => {
                 if(profile.contacts[key] != null && profile.contacts[key] !== '') {
                     return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>;
                 }
-            })}</p>
+            })}</div>
         </div>
         <div className={style.buttonEditMode}>
             { isOwner && <button onClick={goToEditMode}>Edit</button> }
@@ -90,7 +90,7 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
 
 
 const Contact = ({contactTitle, contactValue}) => {
-    return <p className={style.contacts}>{contactTitle}: {contactValue}</p>;
+    return <div className={style.contacts}>{contactTitle}: {contactValue}</div>;
 };
 
 export default ProfileUser;

@@ -8,20 +8,20 @@ const ProfileDataForm = ({handleSubmit, initialValues, error}) => {
     return <form onSubmit={handleSubmit}>
         {error && <div className={style.formSummaryError}>{error}</div>}
         <div>
-            <p>Name:
-                {createField('Full name', 'fullName', [], Input)}</p>
+            <div><b>Name:</b>
+                {createField('Full name', 'fullName', [], Input)}</div>
         </div>
         <div>
-            <p>About Me:
-                {createField('About Me', 'aboutMe', [], Textarea)}</p>
+            <div><b>About Me:</b>
+                {createField('About Me', 'aboutMe', [], Textarea)}</div>
         </div>
         <div>
-            <p>Looking for a job:
-                {createField('', 'lookingForAJob', [], Input, {type: 'checkbox'})} </p>
+            <div><b>Looking for a job:</b>
+                {createField('', 'lookingForAJob', [], Input, {type: 'checkbox'})} </div>
         </div>
         <div>
-            <p>My professional skills:
-                {createField('My professional skills', 'lookingForAJobDescription', [], Textarea)} </p>
+            <div><b>My professional skills:</b>
+                {createField('My professional skills', 'lookingForAJobDescription', [], Textarea)} </div>
         </div>
         <div>
             <b>Contacts:</b> {Object.keys(initialValues.contacts).map(key => {
