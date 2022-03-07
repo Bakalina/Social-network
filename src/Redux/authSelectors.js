@@ -24,3 +24,11 @@ const getUserIdSelector = state => {
 export const getUserId = createSelector(getUserIdSelector, (userId) => {
     return userId;
 });
+
+const getCaptchaUrlSelector = state => {
+    return state.auth.captchaUra;
+};
+
+export const getCaptchaUrl = createSelector(getCaptchaUrlSelector, (captchaUra) => {
+    return captchaUra;
+});
