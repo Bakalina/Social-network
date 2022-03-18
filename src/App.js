@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import Nav from "./Components/Nav/Nav";
 import style from "./App.module.css";
-import {Route, withRouter} from "react-router-dom";
+import {Redirect, Route, withRouter} from "react-router-dom";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
@@ -28,6 +28,7 @@ const App = (props) => {
             <HeaderContainer/>
             <Nav/>
             <div className={style.appContent}>
+                <Route exact path='/' render={()=> <Redirect to={'/profile'}/>}/>
                 <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                 <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                 <Route path='/users' render={() => <UsersContainer/>}/>
