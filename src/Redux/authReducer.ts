@@ -5,10 +5,10 @@ const SET_USER_DATA = 'authReducer/SET_USER_DATA';
 const GET_CAPTCHA_URL_SUCCESS = 'authReducer/GET_CAPTCHA_URL_SUCCESS';
 
 type InitialStateType = {
-    userId: number | null
-    email: string | null
-    login: string | null
-    isAuth: boolean
+    userId: number | null,
+    email: string | null,
+    login: string | null,
+    isAuth: boolean,
     captchaUrl: string | null
 };
 
@@ -34,9 +34,9 @@ const authReducer = (state = initialState, action: any): InitialStateType => {
 };
 
 type SetAuthUserDataActionPayload = {
-    userId: number | null
-    email: string | null
-    login: string | null
+    userId: number | null,
+    email: string | null,
+    login: string | null,
     isAuth: boolean
 }
 
@@ -49,7 +49,7 @@ export const setAuthUserData = (userId: number | null, email: string | null, log
     type: SET_USER_DATA, payload: {userId, email, login, isAuth}});
 
 type GetCaptchaUrlSuccessType = {
-    type: typeof GET_CAPTCHA_URL_SUCCESS
+    type: typeof GET_CAPTCHA_URL_SUCCESS,
     payload: { captchaUra: string }
 }
 
