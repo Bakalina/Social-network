@@ -8,20 +8,27 @@ const DELETE_POST = 'profileReducer/DELETE_POST';
 const SAVE_PHOTO_SUCCESS = 'profileReducer/SAVE_PHOTO_SUCCESS';
 const EDIT_MODULE = 'profileReducer/EDIT_MODULE';
 
+type PostData = {
+    id: number,
+    message: string
+}
+
 const initialState = {
     postData: [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'Hello'},
         {id: 3, message: 'Thanks'},
         {id: 4, message: 'Yo'},
-    ],
+    ] as Array<PostData>,
     newPostText: 'React',
     profile: null,
     status: '',
     editModule: false
 };
 
-const profileReducer = (state = initialState, action) => {
+type InitialStateType = typeof initialState
+
+const profileReducer = (state = initialState, action: any): InitialStateType => {
 
     switch (action.type) {
     case ADD_POST:
@@ -93,7 +100,7 @@ export const savePhoto = (file) => async (dispatch) => {
     }
 };
 
-export const saveProfile = (profile) => async (dispatch, getState) => {
+export const saveProfile = (profile: any) => async (dispatch: any, getState: any) => {
     const userId = getState().auth.userId;
     const response = await profileApi.saveProfile(profile);
     if (response.data.resultCode === 0) {
