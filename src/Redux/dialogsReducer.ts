@@ -1,8 +1,13 @@
 const SEND_MESSAGE = 'dialogsReducer/SEND_MESSAGE';
 
 type DialogsStateType = {
-    id: number,
+    id: number
     name: string
+}
+
+type MessageDataType = {
+    id: number
+    message: string
 }
 
 const initialState = {
@@ -19,7 +24,7 @@ const initialState = {
         {id: 3, message: 'Thanks'},
         {id: 4, message: 'i am fine'},
         {id: 5, message: 'Yo'}
-    ],
+    ] as Array<MessageDataType>,
 };
 
 type InitialStateType = typeof initialState
