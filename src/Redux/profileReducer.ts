@@ -1,5 +1,6 @@
 import {profileApi} from "../Api/Api";
 import {stopSubmit} from "redux-form";
+import {PhotosType, PostData, ProfileType} from "../types/types";
 
 const ADD_POST = 'profileReducer/ADD_POST';
 const SET_USER_PROFILE = 'profileReducer/SET_USER_PROFILE';
@@ -8,50 +9,28 @@ const DELETE_POST = 'profileReducer/DELETE_POST';
 const SAVE_PHOTO_SUCCESS = 'profileReducer/SAVE_PHOTO_SUCCESS';
 const EDIT_MODULE = 'profileReducer/EDIT_MODULE';
 
-type PostData = {
-    id: number
-    message: string
-}
 
-type ContactsType = {
-    github: string
-    vk: string
-    facebook: string
-    instagram: string
-    twitter: string
-    website: string
-    youtube: string
-    mainLink: string
-}
+export type InitialStateType = {
+    postData: PostData[],
+    newPostText: string,
+    profile: ProfileType | null,
+    status: string,
+    editModule: boolean
+};
 
-type PhotosType = {
-    small: string | null
-    large: string | null
-}
-
-type ProfileType = {
-    userId: number
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    contacts: ContactsType
-    photos: PhotosType
-}
-
-const initialState = {
+const initialState: InitialStateType = {
     postData: [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'Hello'},
         {id: 3, message: 'Thanks'},
         {id: 4, message: 'Yo'},
-    ] as Array<PostData>,
+    ],
     newPostText: 'React',
-    profile: null as ProfileType | null,
+    profile: null,
     status: '',
     editModule: false
 };
 
-export type InitialStateType = typeof initialState
 
 const profileReducer = (state = initialState, action: any): InitialStateType => {
 
@@ -83,7 +62,7 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
     case SAVE_PHOTO_SUCCESS:
         return {
             ...state,
-            profile: {...state.profile, photos: action.photos} as ProfileType
+            profile: {...state.profile, photos: action.photos}
         };
     case EDIT_MODULE:
         return {
@@ -95,23 +74,23 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
 };
 
 type AddPostActionCreatorType = {
-    type: typeof ADD_POST
+    type: typeof ADD_POST,
     newPostText: string
 }
 type SetUserProfileType = {
-    type: typeof SET_USER_PROFILE
+    type: typeof SET_USER_PROFILE,
     profile: ProfileType
 }
 type SetStatusType = {
-    type: typeof SET_STATUS
+    type: typeof SET_STATUS,
     status: string
 }
 type SavePhotoSuccessType = {
-    type: typeof SAVE_PHOTO_SUCCESS
+    type: typeof SAVE_PHOTO_SUCCESS,
     photos: PhotosType
 }
 type SetEditModuleType = {
-    type: typeof EDIT_MODULE
+    type: typeof EDIT_MODULE,
     editModule: boolean
 }
 
