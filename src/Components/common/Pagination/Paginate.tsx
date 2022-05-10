@@ -1,23 +1,28 @@
-import React from "react";
+import React, {FC} from "react";
 import style from "./Paginate.module.css";
 import ReactPaginate from "react-paginate";
 
-const Paginate = (props) => {
+type PaginatePropsType = {
+    pageCount: number,
+    handlePageClick: () => void,
+}
+
+const Paginate: FC<PaginatePropsType> = ({handlePageClick, pageCount}) => {
     return (
         <ReactPaginate
+            marginPagesDisplayed={10}
             breakLabel="..."
             nextLabel=">"
-            onPageChange={props.handlePageClick}
+            onPageChange={handlePageClick}
             pageRangeDisplayed={5}
-            pageCount={props.pageCount}
+            pageCount={pageCount}
             previousLabel="<"
-            renderOnZeroPageCount={null}
+            // renderOnZeroPageCount={null}
             containerClassName={style.paginate}
             pageClassName={style.paginateLi}
             activeClassName={style.paginateLiActive}
             previousClassName={style.paginateLiPrevious}
-            nextClassName={style.paginateLiNext}
-        />
+            nextClassName={style.paginateLiNext}/>
     );
 };
 
