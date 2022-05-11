@@ -30,17 +30,22 @@ const initialState: InitialStateType = {
     followingInProgress: false,
 };
 
-// const usersFollowed = (state, action, newObgProp) => {
-//     return state.map(el => {
-//         if (el.id === action) {
-//             return {...el, ...newObgProp};
-//         }
-//         return el;
-//     });
-// };
+type ActionType = {
+    type: typeof FOLLOW
+        | typeof UN_FOLLOW
+        | typeof SET_USERS
+        | typeof SET_CURRENT_PAGE
+        | typeof SET_TOTAL_USERS_COUNT
+        | typeof TOGGLE_IS_FETCHING
+        | typeof TOGGLE_IS_FOLLOWING_PROGRESS,
+    userId: number,
+    users: UserType[],
+    currentPage: number,
+    totalUsersCount: number,
+    isFetching: boolean
+}
 
-
-const usersReducer = (state = initialState, action: any): InitialStateType => {
+const usersReducer = (state = initialState, action: ActionType): InitialStateType => {
 
 
     switch (action.type) {
@@ -93,7 +98,7 @@ type SetTotalUsersCountType = {
 };
 type ToggleIsFetchingType = {
     type: typeof TOGGLE_IS_FETCHING,
-    isFetching: boolean,
+    isFetching: boolean
 };
 type ToggleIsFollowingProgressType = {
     type: typeof TOGGLE_IS_FOLLOWING_PROGRESS,

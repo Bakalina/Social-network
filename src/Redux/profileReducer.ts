@@ -5,12 +5,11 @@ import {PhotosType, PostData, ProfileType} from "../types/types";
 const ADD_POST = 'profileReducer/ADD_POST';
 const SET_USER_PROFILE = 'profileReducer/SET_USER_PROFILE';
 const SET_STATUS = 'profileReducer/SET_STATUS';
-const DELETE_POST = 'profileReducer/DELETE_POST';
 const SAVE_PHOTO_SUCCESS = 'profileReducer/SAVE_PHOTO_SUCCESS';
 const EDIT_MODULE = 'profileReducer/EDIT_MODULE';
 
 
-export type InitialStateType = {
+type InitialStateType = {
     postData: PostData[],
     newPostText: string,
     profile: ProfileType | null,
@@ -32,7 +31,20 @@ const initialState: InitialStateType = {
 };
 
 
-const profileReducer = (state = initialState, action: any): InitialStateType => {
+type ActionType = {
+    type: typeof ADD_POST
+        | typeof SET_USER_PROFILE
+        | typeof SET_STATUS
+        | typeof SAVE_PHOTO_SUCCESS
+        | typeof EDIT_MODULE,
+    newPostText: string,
+    profile: ProfileType,
+    status: string,
+    photos: PhotosType,
+    editModule: boolean
+}
+
+const profileReducer = (state = initialState, action: ActionType): InitialStateType => {
 
     switch (action.type) {
     case ADD_POST:
@@ -53,11 +65,6 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
         return {
             ...state,
             status: action.status
-        };
-    case DELETE_POST:
-        return {
-            ...state,
-            postData: state.postData.filter(el => el.id !== action.postId)
         };
     case SAVE_PHOTO_SUCCESS:
         return {
@@ -97,7 +104,6 @@ type SetEditModuleType = {
 export const addPostActionCreator = (newPostText: string): AddPostActionCreatorType => ({type: ADD_POST, newPostText});
 export const setUserProfile = (profile: ProfileType): SetUserProfileType => ({type: SET_USER_PROFILE, profile});
 export const setStatus = (status: string): SetStatusType => ({type: SET_STATUS, status});
-// export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const savePhotoSuccess = (photos: PhotosType): SavePhotoSuccessType => ({type: SAVE_PHOTO_SUCCESS, photos});
 export const setEditModule = (editModule: boolean): SetEditModuleType => ({type: EDIT_MODULE, editModule});
 

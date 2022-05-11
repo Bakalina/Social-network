@@ -4,7 +4,7 @@ import ReactPaginate from "react-paginate";
 
 type PaginatePropsType = {
     pageCount: number,
-    handlePageClick: () => void,
+    handlePageClick: (selected: any) => void,
 }
 
 const Paginate: FC<PaginatePropsType> = ({handlePageClick, pageCount}) => {
@@ -17,7 +17,6 @@ const Paginate: FC<PaginatePropsType> = ({handlePageClick, pageCount}) => {
             pageRangeDisplayed={5}
             pageCount={pageCount}
             previousLabel="<"
-            // renderOnZeroPageCount={null}
             containerClassName={style.paginate}
             pageClassName={style.paginateLi}
             activeClassName={style.paginateLiActive}
