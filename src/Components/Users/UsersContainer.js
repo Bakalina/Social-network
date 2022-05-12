@@ -37,7 +37,7 @@ const UsersAPI = (props) => {
             totalUsersCount={props.totalUsersCount}
             pageSize={props.pageSize}
             onPageChange={onPageChanged}
-            currentPage={props.currentPage}
+            // currentPage={props.currentPage}
             followingInProgress={props.followingInProgress}
         />
     </>;

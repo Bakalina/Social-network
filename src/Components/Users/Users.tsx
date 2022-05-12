@@ -1,37 +1,54 @@
-import React from "react";
+import React, {FC} from "react";
 import style from './Users.module.css';
 import {NavLink} from "react-router-dom";
 import noImage from "./../../image/no_image_user.jpg";
 import Paginate from "../common/Pagination/Paginate";
+import {PhotosType} from "../../types/types";
 
-const Users = (props) => {
+type UsersType = {
+    name: string,
+    id: number,
+    photos: PhotosType,
+    status: string | null,
+    followed: boolean
+}
 
-    const pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
+type UsersPropsType = {
+    totalUsersCount: number,
+    pageSize: number,
+    onPageChange: (pageNumber: number) => void,
+    users: UsersType[],
+    followingInProgress: boolean,
+    unFollow: (id: number) => void,
+    follow: (id: number) => void
+}
 
-    const handlePageClick = ({selected}) => {
-        props.onPageChange(selected+1);
+const Users: FC<UsersPropsType> = ({totalUsersCount, pageSize, onPageChange, users, followingInProgress, unFollow, follow}) => {
+
+    const pageCount = Math.ceil(totalUsersCount / pageSize);
+
+    const handlePageClick = ({selected}: any) => {
+        onPageChange(selected+1);
     };
 
     return <>
         <div className={style.users}>
-            {props.users.map(el =>
+            {users.map(el =>
                 <div className={style.card} key={el.id}>
                     <span>
                         <div>
                             <NavLink to={'/profile/' + el.id}>
                                 <img width='70px' alt='image'
-                                    src={el.photos.small != null
-                                        ? el.photos.small
-                                        : noImage}/>
+                                    src={el.photos.small != null ? el.photos.small : noImage}/>
                             </NavLink>
                         </div>
                         <div>
                             {el.followed
-                                ? <button disabled={props.followingInProgress} onClick={()=> {
-                                    props.unFollow(el.id);
+                                ? <button disabled={followingInProgress} onClick={()=> {
+                                    unFollow(el.id);
                                 }}>Unfollow</button>
-                                : <button disabled={props.followingInProgress} onClick={() => {
-                                    props.follow(el.id);
+                                : <button disabled={followingInProgress} onClick={() => {
+                                    follow(el.id);
                                 }}>Follow</button>}
                         </div>
                     </span>
