@@ -3,15 +3,7 @@ import style from './Users.module.css';
 import {NavLink} from "react-router-dom";
 import noImage from "./../../image/no_image_user.jpg";
 import Paginate from "../common/Pagination/Paginate";
-import {PhotosType} from "../../types/types";
-
-type UsersType = {
-    name: string,
-    id: number,
-    photos: PhotosType,
-    status: string | null,
-    followed: boolean
-}
+import {UsersType} from "../../types/types";
 
 type UsersPropsType = {
     totalUsersCount: number,
