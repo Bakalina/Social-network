@@ -32,13 +32,6 @@ export type UserType = {
     id: number,
     name: string,
     status: string,
-    photos: PhotosType
-}
-
-export type UsersType = {
-    name: string,
-    id: number,
     photos: PhotosType,
-    status: string | null,
     followed: boolean
 }

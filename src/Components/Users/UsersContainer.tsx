@@ -17,13 +17,13 @@ import {
     getPageSize,
     getTotalUsersCount, getUsers
 } from "../../Redux/usersSelectors";
-import {UsersType} from "../../types/types";
+import {UserType} from "../../types/types";
 import {AppStateType} from "../../Redux/reduxStore";
 
 type UserAPIPropsType = {
     totalUsersCount: number,
     pageSize: number,
-    users: UsersType[],
+    users: UserType[],
     followingInProgress: boolean,
     unFollow: (id: number) => void,
     follow: (id: number) => void,

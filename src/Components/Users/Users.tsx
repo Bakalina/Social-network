@@ -3,13 +3,13 @@ import style from './Users.module.css';
 import {NavLink} from "react-router-dom";
 import noImage from "./../../image/no_image_user.jpg";
 import Paginate from "../common/Pagination/Paginate";
-import {UsersType} from "../../types/types";
+import {UserType} from "../../types/types";
 
 type UsersPropsType = {
     totalUsersCount: number,
     pageSize: number,
     onPageChange: (pageNumber: number) => void,
-    users: UsersType[],
+    users: UserType[],
     followingInProgress: boolean,
     unFollow: (id: number) => void,
     follow: (id: number) => void
