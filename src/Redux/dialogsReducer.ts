@@ -3,17 +3,21 @@ const SEND_MESSAGE = 'dialogsReducer/SEND_MESSAGE';
 type DialogsStateType = {
     id: number,
     name: string
-};
-
+}
 type MessageDataType = {
     id: number,
     message: string
-};
-
+}
 type InitialStateType = {
     dialogsData: DialogsStateType[],
     messageData: MessageDataType[]
 }
+type AddMessageActionCreatorType = {
+    type: typeof SEND_MESSAGE,
+    newMessageBody: string
+}
+type ActionType = AddMessageActionCreatorType
+
 
 const initialState: InitialStateType = {
     dialogsData: [
@@ -32,12 +36,6 @@ const initialState: InitialStateType = {
     ],
 };
 
-type AddMessageActionCreatorType = {
-    type: typeof SEND_MESSAGE,
-    newMessageBody: string
-};
-
-type ActionType = AddMessageActionCreatorType;
 
 const dialogsReducer = (state = initialState, action: ActionType): InitialStateType => {
 
