@@ -42,18 +42,6 @@ type SetEditModuleType = {
     type: typeof EDIT_MODULE,
     editModule: boolean
 }
-// type ActionType = {
-//     type: typeof ADD_POST
-//         | typeof SET_USER_PROFILE
-//         | typeof SET_STATUS
-//         | typeof SAVE_PHOTO_SUCCESS
-//         | typeof EDIT_MODULE,
-//     newPostText: string,
-//     profile: ProfileType,
-//     status: string,
-//     photos: PhotosType,
-//     editModule: boolean
-// }
 type ActionType = AddPostActionCreatorType | SetUserProfileType
     | SetStatusType | SavePhotoSuccessType | SetEditModuleType
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionType>
@@ -81,9 +69,8 @@ const profileReducer = (state = initialState, action: ActionType): InitialStateT
             id: 5,
             message: action.newPostText
         };
-        // @ts-ignore
         return {
-            ...action,
+            ...state,
             postData: [...state.postData, newPost]
         };
     case SET_USER_PROFILE:
