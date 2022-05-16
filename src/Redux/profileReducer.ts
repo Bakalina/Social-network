@@ -1,4 +1,4 @@
-import {profileApi} from "../Api/Api";
+import {profileApi, ResultCodeEnum} from "../Api/Api";
 import {stopSubmit} from "redux-form";
 import {PhotosType, PostData, ProfileType} from "../types/types";
 import {ThunkAction} from "redux-thunk";
@@ -105,33 +105,33 @@ export const savePhotoSuccess = (photos: PhotosType): SavePhotoSuccessType => ({
 export const setEditModule = (editModule: boolean): SetEditModuleType => ({type: EDIT_MODULE, editModule});
 
 export const getUserProfile = (userId: number | null): ThunkType => async dispatch => {
-    const response = await profileApi.getProfile(userId);
-    dispatch(setUserProfile(response.data));
+    const data = await profileApi.getProfile(userId);
+    dispatch(setUserProfile(data));
 };
 
 export const getUserStatus = (userId: number): ThunkType => async dispatch => {
-    const response = await profileApi.getStatus(userId);
-    dispatch(setStatus(response.data));
+    const data = await profileApi.getStatus(userId);
+    dispatch(setStatus(data));
 };
 
 export const updateStatus = (status: string): ThunkType => async dispatch => {
-    const response = await profileApi.updateStatus(status);
-    if (response.data.resultCode === 0) {
+    const data = await profileApi.updateStatus(status);
+    if (data.resultCode === ResultCodeEnum.Success) {
         dispatch(setStatus(status));
     }
 };
 
 export const savePhoto = (file: any): ThunkType => async dispatch => {
-    const response = await profileApi.savePhoto(file);
-    if (response.data.resultCode === 0) {
-        dispatch(savePhotoSuccess(response.data.data.photos));
+    const data = await profileApi.savePhoto(file);
+    if (data.resultCode === ResultCodeEnum.Success) {
+        dispatch(savePhotoSuccess(data.data.photos));
     }
 };
 
 export const saveProfile = (profile: ProfileType): ThunkType => async (dispatch, getState) => {
     const userId = getState().auth.userId;
-    const response = await profileApi.saveProfile(profile);
-    if (response.data.resultCode === 0) {
+    const data = await profileApi.saveProfile(profile);
+    if (data.resultCode === ResultCodeEnum.Success) {
         await dispatch(getUserProfile(userId));
         dispatch(setEditModule(false));
     } else {

@@ -1,4 +1,4 @@
-import {authApi, securityApi} from "../Api/Api";
+import {authApi, ResultCodeEnum, securityApi} from "../Api/Api";
 import {stopSubmit} from "redux-form";
 import {ThunkAction} from "redux-thunk";
 import {AppStateType} from "./reduxStore";
@@ -61,30 +61,29 @@ export const getCaptchaUrlSuccess = (captchaUra: string): GetCaptchaUrlSuccessTy
 });
 
 export const getAuthUser = (): ThunkType => async dispatch => {
-    const response = await authApi.getAuth();
-    if (response.resultCode === 0) {
-        const {id, login, email} = response.data;
+    const data = await authApi.getAuth();
+    if (data.resultCode === ResultCodeEnum.Success) {
+        const {id, login, email} = data.data;
         dispatch(setAuthUserData(id, email, login, true));
     }
 };
 
 export const getCaptchaUrl = (): ThunkType => async dispatch => {
-    const response = await securityApi.getCaptchaUrl();
-    const captchaUrl = response.data.url;
-
+    const data = await securityApi.getCaptchaUrl();
+    const captchaUrl = data.url;
     dispatch(getCaptchaUrlSuccess(captchaUrl));
 };
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string): ThunkType => async dispatch => {
-    const response = await authApi.login(email, password, rememberMe, captcha);
-    if (response.data.resultCode === 0) {
+    const data = await authApi.login(email, password, rememberMe, captcha);
+    if (data.resultCode === ResultCodeEnum.Success) {
         await dispatch(getAuthUser());
     } else {
-        if (response.data.resultCode === 10) {
+        if (data.resultCode === ResultCodeEnum.CaptchaIsRequired) {
             await dispatch(getCaptchaUrl());
         }
-        const message = response.data.messages.length > 0
-            ? response.data.messages[0]
+        const message = data.messages.length > 0
+            ? data.messages[0]
             : 'Error!';
 
         // @ts-ignore
@@ -93,8 +92,8 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 };
 
 export const logout = () => async (dispatch: any) => {
-    const response = await authApi.logout();
-    if (response.data.resultCode === 0) {
+    const data = await authApi.logout();
+    if (data.resultCode === ResultCodeEnum.Success) {
         dispatch(setAuthUserData(null, null, null, false));
     }
 };

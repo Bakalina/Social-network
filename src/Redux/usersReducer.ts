@@ -106,10 +106,10 @@ export const toggleIsFollowingProgress = (isFetching: boolean): ToggleIsFollowin
 export const requestUsers = (currentPage: number, pageSize: number): ThunkType => async dispatch => {
     dispatch(toggleIsFetching(true));
 
-    const response = await usersApi.getUsers(currentPage, pageSize);
+    const data = await usersApi.getUsers(currentPage, pageSize);
     dispatch(toggleIsFetching(false));
-    dispatch(setUsers(response.items));
-    dispatch(setTotalUsersCount(response.totalCount));
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUsersCount(data.totalCount));
 };
 
 const _followUnFollowFlow = async (dispatch: Dispatch<ActionType>,
@@ -117,8 +117,8 @@ const _followUnFollowFlow = async (dispatch: Dispatch<ActionType>,
     apiMethod: any,
     actionCreator: (userId: number) => FollowSuccessType | UnFollowSuccessType) => {
     dispatch(toggleIsFollowingProgress(true));
-    const response = await apiMethod(userId);
-    if (response.resultCode === 0) {
+    const data = await apiMethod(userId);
+    if (data.resultCode === 0) {
         dispatch(actionCreator(userId));
     }
     dispatch(toggleIsFollowingProgress(false));
