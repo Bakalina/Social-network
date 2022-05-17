@@ -25,7 +25,7 @@ type SetAuthUserDataType = {
 }
 type GetCaptchaUrlSuccessType = {
     type: typeof GET_CAPTCHA_URL_SUCCESS,
-    payload: { captchaUra: string }
+    payload: { captchaUrl: string }
 }
 type ActionType = SetAuthUserDataType | GetCaptchaUrlSuccessType
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionType>
@@ -56,8 +56,8 @@ const authReducer = (state = initialState, action: ActionType): InitialStateType
 export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean): SetAuthUserDataType => ({
     type: SET_USER_DATA, payload: {userId, email, login, isAuth}});
 
-export const getCaptchaUrlSuccess = (captchaUra: string): GetCaptchaUrlSuccessType => ({
-    type: GET_CAPTCHA_URL_SUCCESS , payload: {captchaUra}
+export const getCaptchaUrlSuccess = (captchaUrl: string): GetCaptchaUrlSuccessType => ({
+    type: GET_CAPTCHA_URL_SUCCESS , payload: {captchaUrl}
 });
 
 export const getAuthUser = (): ThunkType => async dispatch => {
