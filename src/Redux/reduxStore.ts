@@ -20,6 +20,9 @@ const reducers = combineReducers({
 type ReducersType = typeof reducers;
 export type AppStateType = ReturnType<ReducersType>
 
+type PropertiesType<T> = T extends {[key: string]: infer U} ? U : never
+export type InferActionsTypes<T extends {[key: string]: (...args: any[]) => any}> = ReturnType<PropertiesType<T>>
+
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 // @ts-ignore
 window.store = store;
