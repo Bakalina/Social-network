@@ -3,8 +3,7 @@
         "browser": true,
         "es2021": true
     },
-    "extends": "plugin:react/recommended",
-    "parser": "babel-eslint",
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -12,9 +11,8 @@
         "ecmaVersion": 12,
         "sourceType": "module"
     },
-    "plugins": [
-        "react"
-    ],
+    "plugins":
+        ["@typescript-eslint"],
     "rules": {
         "react/prop-types": 0,
         "space-in-parens": "error",
@@ -23,7 +21,8 @@
         "no-multi-spaces": "error",
         "no-multiple-empty-lines": "error",
         "prefer-const": "error",
-        "no-use-before-define": "error",
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": ["error"],
         "no-var": "error"
     }
 }

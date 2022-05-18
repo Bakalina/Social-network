@@ -5,6 +5,39 @@ import ProfileInfoStatus from "./ProfileInfoStatus";
 import noImage from "./../../../image/no_image_user.jpg";
 import ProfileDataForm from "./ProfileDataForm";
 
+
+const Contact = ({contactTitle, contactValue}) => {
+    return <div className={style.contacts}>{contactTitle}: {contactValue}</div>;
+};
+
+const ProfileData = ({profile, isOwner, goToEditMode}) => {
+    return <div>
+        <div>
+            <h3>Name: {profile.fullName}</h3>
+        </div>
+        <div>
+            <p><b>About Me:</b> {profile.aboutMe}</p>
+        </div>
+        <div>
+            <p><b>Looking for a job:</b> {profile.lookingForAJob ? 'Yes' : 'No'} </p>
+        </div>
+        <div>
+            <p><b>My professional skills:</b> {profile.lookingForAJobDescription} </p>
+        </div>
+        <div>
+            <div><b>Contacts:</b> {Object.keys(profile.contacts).map(key => {
+                if(profile.contacts[key] != null && profile.contacts[key] !== '') {
+                    return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>;
+                }
+            })}</div>
+        </div>
+        <div className={style.buttonEditMode}>
+            { isOwner && <button onClick={goToEditMode}>Edit</button> }
+        </div>
+    </div>;
+};
+
+
 const ProfileUser = (props) => {
     if (!props.profile) {
         return <Preloader/>;
@@ -61,36 +94,5 @@ const ProfileUser = (props) => {
     );
 };
 
-const ProfileData = ({profile, isOwner, goToEditMode}) => {
-    return <div>
-        <div>
-            <h3>Name: {profile.fullName}</h3>
-        </div>
-        <div>
-            <p><b>About Me:</b> {profile.aboutMe}</p>
-        </div>
-        <div>
-            <p><b>Looking for a job:</b> {profile.lookingForAJob ? 'Yes' : 'No'} </p>
-        </div>
-        <div>
-            <p><b>My professional skills:</b> {profile.lookingForAJobDescription} </p>
-        </div>
-        <div>
-            <div><b>Contacts:</b> {Object.keys(profile.contacts).map(key => {
-                if(profile.contacts[key] != null && profile.contacts[key] !== '') {
-                    return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>;
-                }
-            })}</div>
-        </div>
-        <div className={style.buttonEditMode}>
-            { isOwner && <button onClick={goToEditMode}>Edit</button> }
-        </div>
-    </div>;
-};
-
-
-const Contact = ({contactTitle, contactValue}) => {
-    return <div className={style.contacts}>{contactTitle}: {contactValue}</div>;
-};
 
 export default ProfileUser;
