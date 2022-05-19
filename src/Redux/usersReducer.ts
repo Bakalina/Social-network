@@ -1,9 +1,10 @@
-import {followApi, usersApi} from "../Api/Api";
 import {objectHelpers} from "../Components/utils/objectHelpers";
 import {UserType} from "../types/types";
 import {ThunkAction} from "redux-thunk";
 import {AppStateType, InferActionsTypes} from "./reduxStore";
 import {Dispatch} from "redux";
+import {usersApi} from "../Api/UsersApi";
+import {followApi} from "../Api/FollowApi";
 
 
 type InitialStateType = {

@@ -1,8 +1,9 @@
-import {profileApi, ResultCodeEnum} from "../Api/Api";
+import {ResultCodeEnum} from "../Api/Api";
 import {stopSubmit} from "redux-form";
 import {PhotosType, PostData, ProfileType} from "../types/types";
 import {ThunkAction} from "redux-thunk";
 import {AppStateType} from "./reduxStore";
+import {profileApi} from "../Api/ProfileApi";
 
 
 const ADD_POST = 'profileReducer/ADD_POST';
