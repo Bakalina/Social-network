@@ -15,7 +15,7 @@ const initialState = {
 };
 
 
-const actions = {
+export const actions = {
     setAuthUserData: (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => ({
         type: 'SN/AUTH/SET_USER_DATA', payload: {userId, email, login, isAuth}} as const),
     getCaptchaUrlSuccess: (captchaUrl: string) => ({
