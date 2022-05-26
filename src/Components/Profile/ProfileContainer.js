@@ -2,11 +2,11 @@ import React, {useEffect} from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
+    changeEditModule,
     getUserProfile,
     getUserStatus,
     savePhoto,
     saveProfile,
-    setEditModule,
     updateStatus
 } from "../../Redux/profileReducer";
 import {withRouter} from "react-router-dom";
@@ -38,7 +38,7 @@ const ProfileContainer = (props) => {
             isOwner={!props.match.params.userId}
             savePhoto={props.savePhoto}
             editModule={props.editModule}
-            setEditModule={props.setEditModule}
+            setEditModule={props.changeEditModule}
         />
     );
 
@@ -53,7 +53,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-    connect(mapStateToProps, {getUserProfile, getUserStatus, updateStatus, savePhoto, saveProfile, setEditModule}),
+    connect(mapStateToProps, {getUserProfile, getUserStatus, updateStatus, savePhoto, saveProfile, changeEditModule}),
     withRouter,
     withAuthRedirectComponent
 )(ProfileContainer);
