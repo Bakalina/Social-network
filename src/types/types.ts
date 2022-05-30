@@ -1,7 +1,3 @@
-export type PostData = {
-    id: number,
-    message: string
-}
 
 export type ContactsType = {
     github: string,
