@@ -13,6 +13,7 @@ const maxLength10 = maxLengthCreator(20);
 type MessageFormValuesType = {
     addMessage: string
 }
+
 type PropsType = {}
 
 
