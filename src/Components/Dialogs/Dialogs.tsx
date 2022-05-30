@@ -1,16 +1,22 @@
-import React from "react";
+import React, {FC} from "react";
 import style from './Dialogs.module.css';
 import MessageItems from "./Message/Message";
-import {Redirect} from "react-router-dom";
-import {Field, Form, reduxForm} from "redux-form";
+import {Field, Form, InjectedFormProps, reduxForm} from "redux-form";
 import {Textarea} from "../common/FormsControls/FormsControls";
 import {maxLengthCreator, required} from "../utils/validators/validators";
 import DialogItem from "./DialogItem/DialogItem";
+import {InitialStateType} from "../../Redux/dialogsReducer";
 
 
 const maxLength10 = maxLengthCreator(20);
 
-const AddMessageForm = (props) => {
+type MessageFormValuesType = {
+    addMessage: string
+}
+type PropsType = {}
+
+
+const AddMessageForm: FC<InjectedFormProps<MessageFormValuesType, PropsType> & PropsType> = (props) => {
     return (
         <div>
             <h4>Message</h4>
@@ -29,21 +35,24 @@ const AddMessageForm = (props) => {
     );
 };
 
-const AddMessageReduxForm = reduxForm({form: 'addMessage'})(AddMessageForm);
+const AddMessageReduxForm = reduxForm<MessageFormValuesType, PropsType>({form: 'addMessage'})(AddMessageForm);
 
-export default function Dialogs(props) {
+type OwnPropsType = {
+    messagePage: InitialStateType,
+    onSendMessage: (addMessage: string) => void
+}
 
-    const dialogsElement = props.state.messagePage.dialogsData
+const Dialogs: FC<OwnPropsType> = (props) => {
+
+    const dialogsElement = props.messagePage.dialogsData
         .map((el) => (<DialogItem key={el.id} name={el.name} id={el.id}/>));
 
-    const messageElement = props.state.messagePage.messageData
-        .map((el) => (<MessageItems key={el.id} message={el.message} id={el.id}/>));
+    const messageElement = props.messagePage.messageData
+        .map((el) => (<MessageItems key={el.id} message={el.message}/>));
 
-
-    if (!props.isAuth) return <Redirect to={'/login'} />;
-
-    const onSubmit = (formData) => {
-        props.onSendMessageClick(formData.addMessage);
+    console.log(props.onSendMessage);
+    const onSubmit = (formData: MessageFormValuesType) => {
+        props.onSendMessage(formData.addMessage);
     };
 
     return (
@@ -60,4 +69,6 @@ export default function Dialogs(props) {
         </div>
 
     );
-}
+};
+
+export default Dialogs;
