@@ -22,7 +22,7 @@ const AddMessageForm: FC<InjectedFormProps<MessageFormValuesType, PropsType> & P
             <h4>Message</h4>
             <Form onSubmit={props.handleSubmit}>
                 <div>
-                    <Field name={'addMessage'}
+                    <Field name={'addMessage'} 
                         component={Textarea}
                         placeholder={'New Message'}
                         validate={[required, maxLength10]} />
@@ -66,6 +66,7 @@ const Dialogs: FC<OwnPropsType> = (props) => {
             </div>
             <AddMessageReduxForm onSubmit={onSubmit}/>
         </div>
+
     );
 };
 
