@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {FC, useEffect} from "react";
 import Nav from "./Components/Nav/Nav";
 import style from "./App.module.css";
 import {Redirect, Route, withRouter} from "react-router-dom";
@@ -11,9 +11,14 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializedApp} from "./Redux/appReducer";
 import Preloader from "./Components/common/Preloader/Preloader";
+import {AppStateType} from "./Redux/reduxStore";
 
+type MapPropsType = ReturnType<typeof mapStateToProps>
+type DispatchPropsType = {
+    initializedApp: () => void
+}
 
-const App = (props) => {
+const App: FC<MapPropsType & DispatchPropsType> = (props) => {
 
     useEffect(() => {
         props.initializedApp();
@@ -39,10 +44,10 @@ const App = (props) => {
 
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
     initialized: state.app.initialized
 });
 
-export default compose(
+export default compose<React.ComponentType>(
     withRouter,
     connect(mapStateToProps, {initializedApp}))(App);
