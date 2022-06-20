@@ -6,11 +6,6 @@ import {getPostData} from "../../../Redux/profileSelectors";
 import {AppStateType} from "../../../Redux/reduxStore";
 
 
-type MyPostType = {
-        id: number,
-        message: string
-}
-
 const MyPost = () => {
     const postData = useSelector((state: AppStateType) => getPostData(state));
 
