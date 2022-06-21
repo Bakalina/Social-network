@@ -10,8 +10,8 @@ export default function Profile(props) {
             <ProfileUser
                 setEditModule={props.setEditModule}
                 editModule={props.editModule}
-                profile={props.profile}
                 status={props.status}
+                profile={props.profile}
                 updateStatus={props.updateStatus}
                 authorizedUserId={props.authorizedUserId}
                 isOwner={props.isOwner}

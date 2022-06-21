@@ -1,12 +1,20 @@
-import React from "react";
+import React, {FC} from "react";
 import style from './ProfileInfo.module.css';
-import {Field, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControls/FormsControls";
 
 const maxLength10 = maxLengthCreator(10);
 
-const ProfileInfoForm = (props) => {
+type AddPostFormsValueType = {
+    newMessage: string
+}
+
+type ProfileInfoFormType = {
+
+}
+
+const ProfileInfoForm: FC<InjectedFormProps<AddPostFormsValueType, ProfileInfoFormType> & ProfileInfoFormType> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -22,11 +30,16 @@ const ProfileInfoForm = (props) => {
     );
 };
 
-const ProfileInfoReduxForm = reduxForm({form: 'newMessage'})(ProfileInfoForm);
 
-export default function ProfileInfo(props) {
+const ProfileInfoReduxForm = reduxForm<AddPostFormsValueType, ProfileInfoFormType>({form: 'newMessage'})(ProfileInfoForm);
 
-    const onSubmit = (formData) => {
+type ProfileInfoType = {
+    onAddPost: (newMessage: string) => void
+}
+
+const ProfileInfo: FC<ProfileInfoType> = (props) => {
+
+    const onSubmit = (formData: AddPostFormsValueType) => {
         props.onAddPost(formData.newMessage);
     };
 
@@ -36,4 +49,7 @@ export default function ProfileInfo(props) {
             <ProfileInfoReduxForm onSubmit={onSubmit}/>
         </div>
     );
-}
+};
+
+export default ProfileInfo;
+
