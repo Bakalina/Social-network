@@ -1,16 +1,28 @@
-import React, {useRef} from "react";
+import React, {ChangeEvent, FC, useRef} from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import style from "./ProfileUser.module.css";
 import ProfileInfoStatus from "./ProfileInfoStatus";
 import noImage from "./../../../image/no_image_user.jpg";
 import ProfileDataForm from "./ProfileDataForm";
+import {ContactsType, ProfileType} from "../../../types/types";
 
 
-const Contact = ({contactTitle, contactValue}) => {
+type ContactType = {
+    contactTitle: string,
+    contactValue: string
+}
+
+const Contact: FC<ContactType> = ({contactTitle, contactValue}) => {
     return <div className={style.contacts}>{contactTitle}: {contactValue}</div>;
 };
 
-const ProfileData = ({profile, isOwner, goToEditMode}) => {
+type ProfileDataType = {
+    profile: ProfileType,
+    isOwner: boolean,
+    goToEditMode: () => void
+}
+
+const ProfileData: FC<ProfileDataType> = ({profile, isOwner, goToEditMode}) => {
     return <div>
         <div>
             <h3>Name: {profile.fullName}</h3>
@@ -26,8 +38,8 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
         </div>
         <div>
             <div><b>Contacts:</b> {Object.keys(profile.contacts).map(key => {
-                if(profile.contacts[key] != null && profile.contacts[key] !== '') {
-                    return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>;
+                if(profile.contacts[key as keyof ContactsType] != null && profile.contacts[key as keyof ContactsType] !== '') {
+                    return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]}/>;
                 }
             })}</div>
         </div>
@@ -37,27 +49,40 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
     </div>;
 };
 
+type ProfileUserType = {
+    profile: ProfileType,
+    savePhoto: (file: File) => void,
+    isOwner: boolean,
+    saveProfile: (profile: ProfileType) => void,
+    status: string,
+    updateStatus: (status: string) => void,
+    authorizedUserId: number,
+    setEditModule: (arg: boolean) => void,
+    editModule: boolean
+}
 
-const ProfileUser = (props) => {
+const ProfileUser: FC<ProfileUserType> = (props) => {
     if (!props.profile) {
         return <Preloader/>;
     }
 
-    const onMainPhotoSelected = (e) => {
-        if(e.target.files.length) {
+    const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+        if(e.target.files?.length) {
             props.savePhoto(e.target.files[0]);
         }
     };
 
-    const fileInput = useRef(null);
+    const fileInput = useRef<HTMLInputElement>(null);
 
     const addPhoto = () => {
         if (props.isOwner) {
-            fileInput.current.click();
+            if (fileInput.current !== null) {
+                fileInput.current.click();
+            }
         }
     };
 
-    const onSubmit = (formData) => {
+    const onSubmit = (formData: ProfileType) => {
         props.saveProfile(formData);
     };
 
@@ -85,7 +110,7 @@ const ProfileUser = (props) => {
             { props.editModule ?
                 <ProfileDataForm
                     initialValues={props.profile}
-                    onSubmit={onSubmit}/> :
+                    handleSubmit={onSubmit}/> :
                 <ProfileData
                     profile={props.profile}
                     goToEditMode={()=>props.setEditModule(true)}
