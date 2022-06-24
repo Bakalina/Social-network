@@ -14,7 +14,7 @@ const initialState = {
         {id: 4, message: 'Yo'},
     ],
     newPostText: 'React',
-    profile: null as (ProfileType | null),
+    profile: null as ProfileType | null,
     status: '',
     editModule: false
 };
@@ -56,7 +56,7 @@ const profileReducer = (state = initialState, action: ActionType): InitialStateT
     case 'SN/PROFILE/SAVE_PHOTO_SUCCESS':
         return {
             ...state,
-            profile: {...state.profile, photos: action.photos}
+            profile: {...state.profile, photos: action.photos} as ProfileType
         };
     case 'SN/PROFILE/EDIT_MODULE':
         return {
