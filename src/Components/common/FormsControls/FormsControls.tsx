@@ -32,9 +32,9 @@ export const Input: FC<WrappedFieldProps> = (props) => {
 };
 
 
-export const createField = (placeholder: string,
+export function createField(placeholder: string | undefined,
     name: string, validators: FieldValidatorType[] ,
-    component: string | React.FC, props = {}, text: string = '') => {
+    component: FC<WrappedFieldProps>, props = {}, text: string = '') {
     return <div>
         <Field
             placeholder={placeholder}
@@ -43,4 +43,4 @@ export const createField = (placeholder: string,
             component={component}
             {...props}/> {text}
     </div>;
-};
+}
