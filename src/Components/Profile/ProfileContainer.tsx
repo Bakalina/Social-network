@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {FC, useEffect} from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
@@ -9,18 +9,42 @@ import {
     saveProfile,
     updateStatus
 } from "../../Redux/profileReducer";
-import {withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirectComponent} from "../../hoc/withAuthRedirectComponent";
 import {compose} from "redux";
 import {getEditModule, getProfile, getStatus} from "../../Redux/profileSelectors";
 import {getIsAuth, getUserId} from "../../Redux/authSelectors";
+import {AppStateType} from "../../Redux/reduxStore";
+import {ProfileType} from "../../types/types";
 
+type MapStateToPropsType = {
+    profile: ProfileType | null,
+    status: string,
+    authorizedUserId: number,
+    isAuth: boolean,
+    editModule: boolean
+}
 
-const ProfileContainer = (props) => {
+type MapDispatchToPropsType = {
+    getUserStatus: (userId: number | null) => void,
+    getUserProfile: (userId: number | null) => void,
+    updateStatus: (status: string) => void,
+    savePhoto: (file: File) => void,
+    saveProfile: (profile: ProfileType) => void,
+    changeEditModule: () => void
+}
+
+type PathParams = {
+    userId: string
+}
+
+type ProfileContainerType = MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps<PathParams>
+
+const ProfileContainer: FC<ProfileContainerType> = (props) => {
 
 
     useEffect(() => {
-        let userId = props.match.params.userId;
+        let userId = +props.match.params.userId;
         if (!userId) {
             userId = props.authorizedUserId;
         }
@@ -30,7 +54,7 @@ const ProfileContainer = (props) => {
 
 
     return (
-        <Profile {...props}
+        <Profile
             profile={props.profile}
             status={props.status}
             updateStatus={props.updateStatus}
@@ -39,12 +63,13 @@ const ProfileContainer = (props) => {
             savePhoto={props.savePhoto}
             editModule={props.editModule}
             setEditModule={props.changeEditModule}
+            saveProfile={props.saveProfile}
         />
     );
 
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
     profile: getProfile(state),
     status: getStatus(state),
     authorizedUserId: getUserId(state),
@@ -52,8 +77,9 @@ const mapStateToProps = (state) => ({
     editModule: getEditModule(state)
 });
 
-export default compose(
-    connect(mapStateToProps, {getUserProfile, getUserStatus, updateStatus, savePhoto, saveProfile, changeEditModule}),
+export default compose<React.ComponentType>(
+    connect(
+        mapStateToProps, {getUserStatus ,getUserProfile, updateStatus, savePhoto, saveProfile, changeEditModule}),
     withRouter,
     withAuthRedirectComponent
 )(ProfileContainer);
