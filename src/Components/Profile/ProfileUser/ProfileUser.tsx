@@ -50,7 +50,7 @@ const ProfileData: FC<ProfileDataType> = ({profile, isOwner, goToEditMode}) => {
 };
 
 type ProfileUserType = {
-    profile: ProfileType,
+    profile: ProfileType | null,
     savePhoto: (file: File) => void,
     isOwner: boolean,
     saveProfile: (profile: ProfileType) => void,
