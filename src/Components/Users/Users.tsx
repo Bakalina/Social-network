@@ -1,29 +1,47 @@
-import React, {FC} from "react";
+import React, {useEffect} from "react";
 import style from './Users.module.css';
 import {NavLink} from "react-router-dom";
 import noImage from "./../../image/no_image_user.jpg";
 import Paginate from "../common/Pagination/Paginate";
-import {UserType} from "../../types/types";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress, getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../Redux/usersSelectors";
+import {follow, requestUsers, unFollow} from "../../Redux/usersReducer";
+import Preloader from "../common/Preloader/Preloader";
 
-type UsersPropsType = {
-    totalUsersCount: number,
-    pageSize: number,
-    onPageChange: (pageNumber: number) => void,
-    users: UserType[],
-    followingInProgress: boolean,
-    unFollow: (id: number) => void,
-    follow: (id: number) => void
-}
 
-const Users: FC<UsersPropsType> = ({totalUsersCount, pageSize, onPageChange, users, followingInProgress, unFollow, follow}) => {
+const Users = () => {
+
+    const users = useSelector(getUsers);
+    const pageSize = useSelector(getPageSize);
+    const totalUsersCount = useSelector(getTotalUsersCount);
+    const followingInProgress = useSelector(getFollowingInProgress);
+    const currentPage = useSelector(getCurrentPage);
+    const isFetching = useSelector(getIsFetching);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(requestUsers(currentPage, pageSize));
+    },[]);
+
+    const onPageChanged = (pageNumber: number) => {
+        dispatch(requestUsers(pageNumber, pageSize));
+    };
 
     const pageCount = Math.ceil(totalUsersCount / pageSize);
 
     const handlePageClick = ({selected}: any) => {
-        onPageChange(selected+1);
+        onPageChanged(selected+1);
     };
 
     return <>
+        { isFetching ? <Preloader /> : null }
         <div className={style.users}>
             {users.map(el =>
                 <div className={style.card} key={el.id}>
@@ -37,10 +55,10 @@ const Users: FC<UsersPropsType> = ({totalUsersCount, pageSize, onPageChange, use
                         <div>
                             {el.followed
                                 ? <button disabled={followingInProgress} onClick={()=> {
-                                    unFollow(el.id);
+                                    dispatch(unFollow(el.id));
                                 }}>Unfollow</button>
                                 : <button disabled={followingInProgress} onClick={() => {
-                                    follow(el.id);
+                                    dispatch(follow(el.id));
                                 }}>Follow</button>}
                         </div>
                     </span>
