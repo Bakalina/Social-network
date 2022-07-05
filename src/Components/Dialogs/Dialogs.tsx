@@ -5,7 +5,10 @@ import {Field, Form, InjectedFormProps, reduxForm} from "redux-form";
 import {Textarea} from "../common/FormsControls/FormsControls";
 import {maxLengthCreator, required} from "../utils/validators/validators";
 import DialogItem from "./DialogItem/DialogItem";
-import {InitialStateType} from "../../Redux/dialogsReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {getMessagePage} from "../../Redux/dialogsSelector";
+import {actions} from "../../Redux/dialogsReducer";
+import {withAuthRedirectComponent} from "../../hoc/withAuthRedirectComponent";
 
 
 const maxLength10 = maxLengthCreator(20);
@@ -38,21 +41,20 @@ const AddMessageForm: FC<InjectedFormProps<MessageFormValuesType, PropsType> & P
 
 const AddMessageReduxForm = reduxForm<MessageFormValuesType, PropsType>({form: 'addMessage'})(AddMessageForm);
 
-type OwnPropsType = {
-    messagePage: InitialStateType,
-    onSendMessage: (addMessage: string) => void
-}
 
-const Dialogs: FC<OwnPropsType> = (props) => {
+const Dialogs = () => {
 
-    const dialogsElement = props.messagePage.dialogsData
+    const messagePage = useSelector(getMessagePage);
+    const dispatch = useDispatch();
+
+    const dialogsElement = messagePage.dialogsData
         .map((el) => (<DialogItem key={el.id} name={el.name} id={el.id}/>));
 
-    const messageElement = props.messagePage.messageData
+    const messageElement = messagePage.messageData
         .map((el) => (<MessageItems key={el.id} message={el.message}/>));
 
     const onSubmit = (formData: MessageFormValuesType) => {
-        props.onSendMessage(formData.addMessage);
+        dispatch(actions.addMessageActionCreator(formData.addMessage));
     };
 
     return (
@@ -71,4 +73,4 @@ const Dialogs: FC<OwnPropsType> = (props) => {
     );
 };
 
-export default Dialogs;
+export default withAuthRedirectComponent(Dialogs);
