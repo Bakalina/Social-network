@@ -3,7 +3,6 @@ import Nav from "./Components/Nav/Nav";
 import style from "./App.module.css";
 import {Redirect, Route, withRouter} from "react-router-dom";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
-import HeaderContainer from "./Components/Header/HeaderContainer";
 import Login from "./Components/Login/Login";
 import {connect} from "react-redux";
 import {compose} from "redux";
@@ -12,6 +11,7 @@ import Preloader from "./Components/common/Preloader/Preloader";
 import {AppStateType} from "./Redux/reduxStore";
 import Users from "./Components/Users/Users";
 import Dialogs from "./Components/Dialogs/Dialogs";
+import Header from "./Components/Header/Header";
 
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type DispatchPropsType = {
@@ -30,7 +30,7 @@ const App: FC<MapPropsType & DispatchPropsType> = (props) => {
 
     return (
         <div className={style.body}>
-            <HeaderContainer/>
+            <Header/>
             <Nav/>
             <div className={style.appContent}>
                 <Route exact path='/' render={()=> <Redirect to={'/profile'}/>}/>
