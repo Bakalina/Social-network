@@ -1,9 +1,9 @@
 import React, {FC} from "react";
 import style from './Profile.module.css';
-import ProfileInfoContainer from "./ProfileInfo/ProfileInfoContainer";
-import MyPostContainer from "./My Post/MyPost";
+import MyPost from "./My Post/MyPost";
 import ProfileUser from "./ProfileUser/ProfileUser";
 import {ProfileType} from "../../types/types";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 type ProfilePropsType = {
     profile: ProfileType | null,
@@ -30,8 +30,8 @@ const Profile: FC<ProfilePropsType> = (props) => {
                 isOwner={props.isOwner}
                 savePhoto={props.savePhoto}
                 saveProfile={props.saveProfile}/>
-            <ProfileInfoContainer/>
-            <MyPostContainer/>
+            <ProfileInfo/>
+            <MyPost/>
         </div>
     );
 };
